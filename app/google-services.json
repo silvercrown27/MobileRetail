@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "927385407783",
+    "firebase_url": "https://registration-app-e8349-default-rtdb.firebaseio.com",
+    "project_id": "registration-app-e8349",
+    "storage_bucket": "registration-app-e8349.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927385407783:android:8e7e9c5f751556e87e5902",
+        "android_client_info": {
+          "package_name": "com.example.mobitail"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoyLu-iKv_U6zL2O79x_uoH9kD64OcN9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927385407783:android:7c371ffa221dcb9d7e5902",
+        "android_client_info": {
+          "package_name": "com.example.newapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoyLu-iKv_U6zL2O79x_uoH9kD64OcN9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
