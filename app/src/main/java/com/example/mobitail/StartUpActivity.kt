@@ -26,14 +26,14 @@ class StartUpActivity : AppCompatActivity() {
             var intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
 
-            overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
         }
 
         login_btn.setOnClickListener {
             var intent = Intent(this, SigninActivity::class.java)
             startActivity(intent)
 
-            overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
         }
     }
 }

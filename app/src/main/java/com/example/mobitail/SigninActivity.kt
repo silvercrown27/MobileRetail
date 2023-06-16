@@ -69,6 +69,8 @@ class SigninActivity : AppCompatActivity() {
                                         ).show()
                                         val intent = Intent(this@SigninActivity, HomeActivity::class.java)
                                         startActivity(intent)
+
+                                        overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
                                     } else {
                                         Toast.makeText(
                                             this@SigninActivity,
@@ -101,6 +103,8 @@ class SigninActivity : AppCompatActivity() {
         back.setOnClickListener {
             var intent = Intent(this, StartUpActivity::class.java)
             startActivity(intent)
+
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
         }
     }
 }

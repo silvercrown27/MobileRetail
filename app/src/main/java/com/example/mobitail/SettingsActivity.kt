@@ -17,7 +17,7 @@ class SettingsActivity : AppCompatActivity() {
             var intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
 
-            overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
         }
     }
 }

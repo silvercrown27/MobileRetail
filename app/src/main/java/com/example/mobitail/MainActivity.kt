@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         welcome.setOnClickListener {
             var intent = Intent(this, StartUpActivity::class.java)
             startActivity(intent)
+
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
         }
 
     }

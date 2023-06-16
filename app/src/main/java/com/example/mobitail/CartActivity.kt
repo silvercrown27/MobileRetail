@@ -22,14 +22,14 @@ class CartActivity : AppCompatActivity() {
                     val intent = Intent(this, CategoriesActivity::class.java)
                     startActivity(intent)
 
-                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
                     return@setOnItemSelectedListener true
                 }
                 R.id.action_cart -> {
                     val intent = Intent(this, CartActivity::class.java)
                     startActivity(intent)
 
-                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
                     return@setOnItemSelectedListener true
                 }
                 R.id.action_home -> {
@@ -37,7 +37,7 @@ class CartActivity : AppCompatActivity() {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
 
-                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
                     return@setOnItemSelectedListener true
                 }
                 R.id.action_favorites -> {
@@ -45,7 +45,7 @@ class CartActivity : AppCompatActivity() {
                     val intent = Intent(this, FavoritesActivity::class.java)
                     startActivity(intent)
 
-                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
                     return@setOnItemSelectedListener true
                 }
                 R.id.action_profile -> {
@@ -53,7 +53,7 @@ class CartActivity : AppCompatActivity() {
                     val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
 
-                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
                     return@setOnItemSelectedListener true
                 }
 
