@@ -85,6 +85,8 @@ class SignUpActivity : AppCompatActivity() {
                     val register = Intent(this, SigninActivity::class.java)
                     startActivity(register)
 
+                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
+
                 }.addOnFailureListener {
                         err -> Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_SHORT).show() }
             }
@@ -92,6 +94,8 @@ class SignUpActivity : AppCompatActivity() {
         back_btn.setOnClickListener {
             var intent = Intent(this, StartUpActivity::class.java)
             startActivity(intent)
+
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
         }
     }
 }

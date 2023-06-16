@@ -25,11 +25,15 @@ class StartUpActivity : AppCompatActivity() {
         customer_ac_btn.setOnClickListener {
             var intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
         }
 
         login_btn.setOnClickListener {
             var intent = Intent(this, SigninActivity::class.java)
             startActivity(intent)
+
+            overridePendingTransition(R.anim.fade_animation, R.anim.fade_animation)
         }
     }
 }
