@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/light_blue"
+    tools:context=".mainActivities.MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="193dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="25dp"
-        android:fontFamily="sans-serif-black"
-        android:text="MobiTail"
-        android:textSize="45dp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toStartOf="@+id/Mobitail_Icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Mobitail_Icon" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="322dp"
+        android:layout_height="409dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="58dp"
+        android:background="@drawable/arc">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="193dp"
+            android:layout_height="69dp"
+            android:fontFamily="sans-serif-black"
+            android:text="MobiTail"
+            android:textSize="45dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.589"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.229" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="322dp"
+        android:layout_height="409dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/arc"
+        android:rotation="180">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/Mobitail_Icon"
-        android:layout_width="123dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="115dp"
-        app:layout_constraintBottom_toTopOf="@+id/welcomeTag"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mobitail" />
+        android:layout_width="127dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/mobitail" />
 
     <TextView
         android:id="@+id/welcomeTag"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="142dp"
@@ -45,24 +63,16 @@
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Mobitail_Icon" />
+        android:textStyle="bold" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/welcomebtn"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/black"
         android:text="Let's Go..."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:cornerRadius="10dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

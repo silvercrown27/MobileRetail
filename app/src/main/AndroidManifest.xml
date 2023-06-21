@@ -16,34 +16,58 @@
         android:theme="@style/Theme.MobileRetail"
         tools:targetApi="31">
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".secondaryActivities.GroceriesActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".secondaryActivities.SweetsActivity"
             android:exported="false" />
         <activity
-            android:name=".FavoritesActivity"
+            android:name=".secondaryActivities.SnacksActivity"
             android:exported="false" />
         <activity
-            android:name=".CartActivity"
+            android:name=".secondaryActivities.CerialsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".secondaryActivities.StationariesActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".secondaryActivities.ClothingActivity"
             android:exported="false" />
         <activity
-            android:name=".SigninActivity"
+            android:name=".secondaryActivities.ElectronicsActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".secondaryActivities.DrinksActivity"
             android:exported="false" />
         <activity
-            android:name=".StartUpActivity"
+            android:name=".mainActivities.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".mainActivities.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.FavoritesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.SigninActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.StartUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainActivities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

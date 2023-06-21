@@ -1,10 +1,11 @@
-package com.example.mobitail
+package com.example.mobitail.mainActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
+import com.example.mobitail.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
@@ -70,7 +71,10 @@ class SigninActivity : AppCompatActivity() {
                                         val intent = Intent(this@SigninActivity, HomeActivity::class.java)
                                         startActivity(intent)
 
-                                        overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+                                        overridePendingTransition(
+                                            R.anim.fade_animation,
+                                            R.anim.fade_out
+                                        )
                                     } else {
                                         Toast.makeText(
                                             this@SigninActivity,

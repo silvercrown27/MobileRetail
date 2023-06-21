@@ -1,8 +1,9 @@
-package com.example.mobitail
+package com.example.mobitail.mainActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mobitail.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class FavoritesActivity : AppCompatActivity() {

@@ -1,24 +1,16 @@
-package com.example.mobitail
+package com.example.mobitail.mainActivities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.ImageButton
 import android.widget.Toast
+import com.example.mobitail.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-
-data class User(
-    val first_name: String = "",
-    val last_name: String = "",
-    val e_mail: String = "",
-    val pass: String = ""
-) {
-    constructor() : this("", "", "", "")
-}
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var get_user_firstname: TextInputEditText
@@ -98,4 +90,12 @@ class SignUpActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
         }
     }
+}
+data class User(
+    val first_name: String = "",
+    val last_name: String = "",
+    val e_mail: String = "",
+    val pass: String = ""
+) {
+    constructor() : this("", "", "", "")
 }

@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".SigninActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    tools:context=".mainActivities.SigninActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="322dp"
+        android:layout_height="409dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/arc">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="322dp"
+        android:layout_height="409dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/arc"
+        android:rotation="180">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/Back_btn"
@@ -21,6 +41,7 @@ tools:context=".SigninActivity">
         android:layout_marginTop="90dp"
         android:fontFamily="cursive"
         android:text="Sign In"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="55dp" />
@@ -29,6 +50,7 @@ tools:context=".SigninActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        style="@style/TextInputLayout.BlackBorder"
         android:layout_centerHorizontal="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -47,6 +69,7 @@ tools:context=".SigninActivity">
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
         android:layout_centerHorizontal="true"
+        style="@style/TextInputLayout.BlackBorder"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -67,7 +90,7 @@ tools:context=".SigninActivity">
         android:layout_marginTop="420dp"
         android:layout_alignParentRight="true"
         android:text="Sign In"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="30dp"
         app:backgroundTint="@color/black"
         app:cornerRadius="10dp"/>
 

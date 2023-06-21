@@ -1,9 +1,10 @@
-package com.example.mobitail
+package com.example.mobitail.mainActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import com.example.mobitail.R
 
 class SettingsActivity : AppCompatActivity() {
     lateinit var back_btn: ImageButton

@@ -1,9 +1,10 @@
-package com.example.mobitail
+package com.example.mobitail.mainActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.mobitail.R
 
 class StartUpActivity : AppCompatActivity() {
     lateinit var store_ac_btn: Button

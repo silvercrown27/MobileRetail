@@ -1,66 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartActivity">
+    android:background="@color/light_blue"
+    tools:context=".mainActivities.CartActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="603dp"
-        android:background="#CCC"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="359dp"
+        android:layout_height="442dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/arc"
+        tools:layout_editor_absoluteX="53dp">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Profile_picture"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/baseline_menu_24"
-            tools:layout_editor_absoluteX="10dp"
-            tools:layout_editor_absoluteY="231dp" />
+            android:src="@drawable/profile"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_overlay="false"
+            app:civ_border_width="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.978"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.038" />
 
         <ImageButton
-            android:id="@+id/profileImageButton"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="8dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="Profile Picture"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_person_pin_24"
-            tools:layout_editor_absoluteX="113dp"
-            tools:layout_editor_absoluteY="226dp" />
+            android:id="@+id/Cards"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/cards"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.671"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.038" />
 
-    </androidx.appcompat.widget.Toolbar>
+        <ImageButton
+            android:id="@+id/Notifications"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/notification"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.826"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.038" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:focusable="false"
+        android:background="@drawable/bottom_nav_card_background"
+        android:elevation="15dp"
+        android:layout_alignParentBottom="true"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:menu="@menu/bottom_navigation_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
