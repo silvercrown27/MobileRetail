@@ -5,14 +5,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.mobitail.R
+import com.google.android.material.button.MaterialButton
 
-class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     private val itemList = ArrayList<Item>()
 
     fun setItemList(items: ArrayList<Item>) {
@@ -22,7 +19,7 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.home_view_recycle, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.categories_recycleview_items, parent, false)
         return ViewHolder(view)
     }
 
@@ -36,23 +33,13 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val cardView: CardView = itemView.findViewById(R.id.Category_items)
-        private val imageView: ImageView = itemView.findViewById(R.id.Category_image)
-        private val textView: TextView = itemView.findViewById(R.id.Category_label)
+        private val cardView: MaterialButton = itemView.findViewById(R.id.category_options)
 
         fun bind(item: Item) {
             val context: Context = itemView.context
 
-            Glide.with(context)
-                .load(item.imageResId)
-                .into(imageView)
+            cardView.text = item.label
 
-            textView.text = item.label
-
-            imageView.setOnClickListener {
-                val intent = Intent(context, item.activity)
-                context.startActivity(intent)
-            }
             cardView.setOnClickListener {
                 val intent = Intent(context, item.activity)
                 context.startActivity(intent)
@@ -60,5 +47,5 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
         }
     }
 
-    data class Item(val imageResId: Int, val label: String, val activity: Class<*>)
+    data class Item(val label: String, val activity: Class<*>)
 }

@@ -16,6 +16,15 @@
         android:theme="@style/Theme.MobileRetail"
         tools:targetApi="31">
         <activity
+            android:name=".mainActivities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".secondaryActivities.GroceriesActivity"
             android:exported="false" />
         <activity
@@ -68,13 +77,7 @@
             android:exported="false" />
         <activity
             android:name=".mainActivities.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

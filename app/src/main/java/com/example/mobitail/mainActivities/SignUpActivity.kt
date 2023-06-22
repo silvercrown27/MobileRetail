@@ -70,6 +70,10 @@ class SignUpActivity : AppCompatActivity() {
                     last_name = fields[1].text.toString(),
                     e_mail = fields[2].text.toString(),
                     pass = fields[3].text.toString(),
+                    deviceName = "",
+                    deviceId = "",
+                    contact = "",
+                    location = ""
                 )
                 dbref.child(userid).setValue(user).addOnCompleteListener {
                     Toast.makeText(this, "User Registered Successfully!",
@@ -91,11 +95,22 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 }
+
 data class User(
     val first_name: String = "",
     val last_name: String = "",
     val e_mail: String = "",
-    val pass: String = ""
+    val pass: String = "",
+    val deviceName: String = "",
+    val deviceId: String = "",
+    val contact: String = "",
+    val location: String = ""
 ) {
-    constructor() : this("", "", "", "")
+    init {
+        require(contact.length >= 10 || contact.isEmpty()) { "Contact should be at least 10 characters long." }
+    }
+
+    constructor() : this("", "", "", "", "")
+
+    // Other methods and logic
 }

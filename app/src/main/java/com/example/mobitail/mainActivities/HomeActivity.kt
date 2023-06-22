@@ -5,13 +5,12 @@ import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.constraintlayout.helper.widget.Carousel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import com.example.mobitail.R
-import com.example.mobitail.adapters.CustomAdapter
+import com.example.mobitail.adapters.HomeAdapter
 import com.example.mobitail.secondaryActivities.CerialsActivity
 import com.example.mobitail.secondaryActivities.ClothingActivity
 import com.example.mobitail.secondaryActivities.DrinksActivity
@@ -23,7 +22,7 @@ import com.example.mobitail.secondaryActivities.SweetsActivity
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var customAdapter: CustomAdapter
+    private lateinit var customAdapter: HomeAdapter
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +74,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         recyclerView = findViewById(R.id.RecycleView1)
-        customAdapter = CustomAdapter()
+        customAdapter = HomeAdapter()
         recyclerView.adapter = customAdapter
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.addItemDecoration(SpacingItemDecoration(10))
@@ -84,16 +83,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun populateItemList() {
-        val itemList = ArrayList<CustomAdapter.Item>()
+        val itemList = ArrayList<HomeAdapter.Item>()
 
-        val item1 = CustomAdapter.Item(R.drawable.a, "Groceries", GroceriesActivity::class.java)
-        val item2 = CustomAdapter.Item(R.drawable.b, "Electronics", ElectronicsActivity::class.java)
-        val item3 = CustomAdapter.Item(R.drawable.c, "Clothing", ClothingActivity::class.java)
-        val item4 = CustomAdapter.Item(R.drawable.d, "Stationary", StationariesActivity::class.java)
-        val item5 = CustomAdapter.Item(R.drawable.e, "Cerials", CerialsActivity::class.java)
-        val item6 = CustomAdapter.Item(R.drawable.f, "Snacks", SnacksActivity::class.java)
-        val item7 = CustomAdapter.Item(R.drawable.g, "Sweets", SweetsActivity::class.java)
-        val item8 = CustomAdapter.Item(R.drawable.g, "Drinks", DrinksActivity::class.java)
+        val item1 = HomeAdapter.Item(R.drawable.a, "Groceries", GroceriesActivity::class.java)
+        val item2 = HomeAdapter.Item(R.drawable.b, "Electronics", ElectronicsActivity::class.java)
+        val item3 = HomeAdapter.Item(R.drawable.c, "Clothing", ClothingActivity::class.java)
+        val item4 = HomeAdapter.Item(R.drawable.d, "Stationary", StationariesActivity::class.java)
+        val item5 = HomeAdapter.Item(R.drawable.e, "Cerials", CerialsActivity::class.java)
+        val item6 = HomeAdapter.Item(R.drawable.f, "Snacks", SnacksActivity::class.java)
+        val item7 = HomeAdapter.Item(R.drawable.g, "Sweets", SweetsActivity::class.java)
+        val item8 = HomeAdapter.Item(R.drawable.g, "Drinks", DrinksActivity::class.java)
 
         itemList.add(item1)
         itemList.add(item2)

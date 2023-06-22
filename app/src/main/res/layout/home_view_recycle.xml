@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="175dp"
+    android:layout_width="170dp"
     android:layout_height="200dp"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"

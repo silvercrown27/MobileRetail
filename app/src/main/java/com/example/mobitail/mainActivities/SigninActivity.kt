@@ -1,8 +1,12 @@
 package com.example.mobitail.mainActivities
 
+import android.content.Context
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.ImageButton
 import android.widget.Toast
 import com.example.mobitail.R
@@ -10,25 +14,40 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.database.ValueEventListener
 
 class SigninActivity : AppCompatActivity() {
-    lateinit var back: ImageButton
-    lateinit var signin: MaterialButton
-    lateinit var email: TextInputEditText
-    lateinit var password: TextInputEditText
+    private lateinit var back: ImageButton
+    private lateinit var signin: MaterialButton
+    private lateinit var email: TextInputEditText
+    private lateinit var password: TextInputEditText
+    private lateinit var dbref: DatabaseReference
+    lateinit var db: SQLiteDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
+        db = openOrCreateDatabase("mobitail", Context.MODE_PRIVATE, null)
+        db.execSQL("CREATE TABLE IF NOT EXISTS users(" +
+                "firstname VARCHAR," +
+                "lastname VARCHAR," +
+                "email VARCHAR," +
+                "devicename VARCHAR," +
+                "deviceid VARCHAR," +
+                "contact VARCHAR," +
+                "location VARCHAR," +
+                "active INTEGER)")
 
         back = findViewById(R.id.Back_btn)
         email = findViewById(R.id.email)
         password = findViewById(R.id.password)
         signin = findViewById(R.id.signin)
 
+        dbref = FirebaseDatabase.getInstance().getReference("user")
 
         signin.setOnClickListener {
             val fields = listOf(email, password)
@@ -68,13 +87,39 @@ class SigninActivity : AppCompatActivity() {
                                             "LOGIN SUCCESS!",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        val intent = Intent(this@SigninActivity, HomeActivity::class.java)
-                                        startActivity(intent)
+                                        userSnapshot.child("deviceName").ref.setValue(Build.MODEL)
+                                        userSnapshot.child("deviceId").ref.setValue(
+                                            Settings.Secure.getString(
+                                                contentResolver,
+                                                Settings.Secure.ANDROID_ID
+                                            )
+                                        ).addOnCompleteListener {
+                                                Toast.makeText(
+                                                    this@SigninActivity,
+                                                    "User Registered Successfully!",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
 
-                                        overridePendingTransition(
-                                            R.anim.fade_animation,
-                                            R.anim.fade_out
-                                        )
+                                                val firstName = user?.first_name ?: ""
+                                                val lastName = user?.last_name ?: ""
+                                                val deviceName = user?.deviceName ?: ""
+                                                val deviceId = user?.deviceId ?: ""
+                                                val contact = user?.contact ?: ""
+                                                val location = user?.location ?: ""
+                                                val active = 0
+
+                                                db.execSQL("ALTER TABLE users ADD COLUMN active INTEGER DEFAULT 0")
+                                                val insertQuery = "INSERT INTO users (firstname, lastname, email, devicename, deviceid, contact, location, active) " +
+                                                        "VALUES ('$firstName', '$lastName', '$userEmail', '$deviceName', '$deviceId', '$contact', '$location', '$active')"
+                                                db.execSQL(insertQuery)
+
+                                                val intent = Intent(this@SigninActivity, HomeActivity::class.java)
+                                                startActivity(intent)
+                                                overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+                                            }
+                                            .addOnFailureListener { err ->
+                                                Toast.makeText(this@SigninActivity, "Error ${err.message}", Toast.LENGTH_SHORT).show()
+                                            }
                                     } else {
                                         Toast.makeText(
                                             this@SigninActivity,
@@ -101,8 +146,10 @@ class SigninActivity : AppCompatActivity() {
                             ).show()
                         }
                     })
+
             }
         }
+
 
         back.setOnClickListener {
             var intent = Intent(this, StartUpActivity::class.java)
