@@ -135,7 +135,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/category_options"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -143,6 +143,23 @@
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
                     tools:listitem="@layout/categories_recycleview_items" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@drawable/rounded_card_border">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/category_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    tools:listitem="@layout/categories_cardview" />
 
             </RelativeLayout>
 

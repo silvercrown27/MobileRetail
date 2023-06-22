@@ -1,14 +1,14 @@
 package com.example.mobitail.mainActivities
 
 import android.content.Intent
-import android.media.session.PlaybackState.CustomAction
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobitail.R
 import com.example.mobitail.adapters.CategoriesAdapter
-import com.example.mobitail.adapters.HomeAdapter
+import com.example.mobitail.adapters.GroupsAdapter
 import com.example.mobitail.secondaryActivities.CerialsActivity
 import com.example.mobitail.secondaryActivities.ClothingActivity
 import com.example.mobitail.secondaryActivities.DrinksActivity
@@ -22,6 +22,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class CategoriesActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var customAdapter: CategoriesAdapter
+    private lateinit var groupsRV: RecyclerView
+    private lateinit var groupsAdapter: GroupsAdapter
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +87,14 @@ class CategoriesActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(SpacingItemDecoration(10))
 
         populateItemList()
+
+        groupsRV = findViewById(R.id.category_groups)
+        groupsAdapter = GroupsAdapter()
+        groupsRV.adapter = groupsAdapter
+        groupsRV.layoutManager = GridLayoutManager(this, 2)
+
+        populateGroupList()
+
     }
     private fun populateItemList() {
         val itemList = ArrayList<CategoriesAdapter.Item>()
@@ -108,5 +118,29 @@ class CategoriesActivity : AppCompatActivity() {
         itemList.add(item8)
 
         customAdapter.setItemList(itemList)
+    }
+
+    private fun populateGroupList() {
+        val groupList = ArrayList<GroupsAdapter.CategoryGroups>()
+
+        val item1 = GroupsAdapter.CategoryGroups("Kales", R.drawable.b)
+        val item2 = GroupsAdapter.CategoryGroups("Oranges", R.drawable.d)
+        val item3 = GroupsAdapter.CategoryGroups("Mangoes", R.drawable.g)
+        val item4 = GroupsAdapter.CategoryGroups("Milk", R.drawable.a)
+        val item5 = GroupsAdapter.CategoryGroups("WaterMellon", R.drawable.f)
+        val item6 = GroupsAdapter.CategoryGroups("Coconuts", R.drawable.e)
+        val item7 = GroupsAdapter.CategoryGroups("Cabbages", R.drawable.d)
+        val item8 = GroupsAdapter.CategoryGroups("Onions", R.drawable.g)
+
+        groupList.add(item1)
+        groupList.add(item2)
+        groupList.add(item3)
+        groupList.add(item4)
+        groupList.add(item5)
+        groupList.add(item6)
+        groupList.add(item7)
+        groupList.add(item8)
+
+        groupsAdapter.setItemList(groupList)
     }
 }

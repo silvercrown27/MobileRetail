@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/orange">
 
     <ImageView
         android:id="@+id/splash_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/mobitail"
-        android:scaleType="centerInside" />
+        android:layout_width="199dp"
+        android:layout_height="342dp"
+        android:layout_centerInParent="true"
+        android:rotation="8"
+        android:scaleType="centerInside"
+        android:src="@drawable/mobitail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splash_image"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="MobiTail"
+        android:textSize="40dp"
+        android:textStyle="italic" />
 
 </RelativeLayout>
