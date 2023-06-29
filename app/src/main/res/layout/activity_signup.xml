@@ -5,27 +5,8 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".mainActivities.SignUpActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/arc">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/arc"
-        android:rotation="180">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="@color/white"
+    tools:context=".Consumer.mainActivities.SignUpActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -64,7 +45,7 @@
                     android:id="@+id/signuplabel"
                     android:layout_width="314dp"
                     android:layout_height="75dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="cursive"
                     android:text="Sign Up"
                     android:textColor="@color/black"

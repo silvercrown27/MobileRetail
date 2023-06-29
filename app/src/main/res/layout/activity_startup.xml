@@ -4,27 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".mainActivities.StartUpActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/arc">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/arc"
-        android:rotation="180">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="@color/white"
+    tools:context=".StartUpActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -74,28 +55,33 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView4"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_alignParentBottom="true"
-        android:text="Already have an account ?"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:paddingHorizontal="30dp"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:text="Already have an account ?"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="35dp"
-        android:background="@android:color/transparent"
-        android:text="Login"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold" />
-
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </RelativeLayout>

@@ -16,67 +16,77 @@
         android:theme="@style/Theme.MobileRetail"
         tools:targetApi="31">
         <activity
-            android:name=".mainActivities.SplashActivity"
+            android:name=".Retaier.FinalSignupstep"
+            android:exported="false" />
+        <activity
+            android:name=".Retaier.SignUpStep2"
+            android:exported="false" />
+        <activity
+            android:name=".Retaier.retailSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".secondaryActivities.GroceriesActivity"
+            android:name=".Consumer.secondaryActivities.GroceriesActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.SweetsActivity"
+            android:name=".Consumer.secondaryActivities.SweetsActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.SnacksActivity"
+            android:name=".Consumer.secondaryActivities.SnacksActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.CerialsActivity"
+            android:name=".Consumer.secondaryActivities.CerialsActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.StationariesActivity"
+            android:name=".Consumer.secondaryActivities.StationariesActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.ClothingActivity"
+            android:name=".Consumer.secondaryActivities.ClothingActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.ElectronicsActivity"
+            android:name=".Consumer.secondaryActivities.ElectronicsActivity"
             android:exported="false" />
         <activity
-            android:name=".secondaryActivities.DrinksActivity"
+            android:name=".Consumer.secondaryActivities.DrinksActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.CategoriesActivity"
+            android:name=".Consumer.mainActivities.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.SettingsActivity"
+            android:name=".Consumer.mainActivities.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.FavoritesActivity"
+            android:name=".Consumer.mainActivities.FavoritesActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.CartActivity"
+            android:name=".Consumer.mainActivities.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.ProfileActivity"
+            android:name=".Consumer.mainActivities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.HomeActivity"
+            android:name=".Consumer.mainActivities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.SigninActivity"
+            android:name=".SigninActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.SignUpActivity"
+            android:name=".Consumer.mainActivities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.StartUpActivity"
+            android:name=".StartUpActivity"
             android:exported="false" />
         <activity
-            android:name=".mainActivities.MainActivity"
+            android:name=".MainActivity"
             android:exported="false" />
     </application>
 

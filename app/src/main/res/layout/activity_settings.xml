@@ -4,52 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".mainActivities.SettingsActivity">
+    android:background="@color/white"
+    tools:context=".Consumer.mainActivities.SettingsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/arc">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/arc"
-        android:rotation="180">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageButton
-        android:id="@+id/Back_btn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/baseline_arrow_back_ios_new_24"
-        android:background="@android:color/transparent" />
-
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Settings"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginLeft="60dp"/>
+        android:layout_height="70dp">
+        <ImageButton
+            android:id="@+id/Back_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/baseline_arrow_back_ios_new_24"
+            android:background="@android:color/transparent" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Settings"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="60dp"/>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="65dp">
+        android:layout_marginTop="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +43,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
+                android:padding="10dp"
                 android:orientation="vertical"
                 android:background="@color/orange">
 
@@ -67,9 +51,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="General"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="10dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -158,18 +142,8 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Language"
                         android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/Location_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
 
                     <ImageView
                         android:id="@+id/Location_btn_rightIcon"
@@ -217,18 +191,8 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Appearance"
                         android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/Location_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
 
                     <ImageView
                         android:id="@+id/Location_btn_rightIcon"
@@ -253,15 +217,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:padding="10dp"
                 android:background="@color/orange">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notifications"
-                    android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="10dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -291,32 +255,15 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Push all"
                         android:textSize="24sp" />
 
-                    <TextView
-                        android:id="@+id/Location_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
-
-                    <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_arrow_forward_24" />
-
-                    <Button
+                    <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/Location_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
                         android:background="@android:color/transparent"
                         android:textColor="@color/light_blue" />
 
@@ -350,34 +297,8 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Messages"
                         android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/Location_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
-
-                    <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_arrow_forward_24" />
-
-                    <Button
-                        android:id="@+id/Location_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@android:color/transparent"
-                        android:textColor="@color/light_blue" />
 
                 </RelativeLayout>
 
@@ -409,26 +330,8 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Offers"
                         android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/Location_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
-
-                    <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
                         android:id="@+id/Location_btn"
@@ -445,15 +348,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:padding="10dp"
                 android:background="@color/orange">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Account"
-                    android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="10dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -483,18 +386,8 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Password and Security"
                         android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/Location_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
 
                     <ImageView
                         android:id="@+id/Location_btn_rightIcon"
@@ -542,18 +435,57 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toStartOf="@id/Location_btn_rightIcon"
                         android:layout_toEndOf="@id/Location_btn_leftIcon"
-                        android:text="Location"
+                        android:text="Privacy"
                         android:textSize="24sp" />
 
+                    <ImageView
+                        android:id="@+id/Location_btn_rightIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/baseline_arrow_forward_24" />
+
+                    <Button
+                        android:id="@+id/Location_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/light_blue" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="7dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_border">
+
+                    <ImageView
+                        android:id="@+id/Location_btn_leftIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/wallets" />
+
                     <TextView
-                        android:id="@+id/Location_label"
+                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kenya"
-                        android:textSize="17dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toStartOf="@id/Location_btn_rightIcon"
+                        android:layout_toEndOf="@id/Location_btn_leftIcon"
+                        android:text="Subscriptions"
+                        android:textSize="24sp" />
 
                     <ImageView
                         android:id="@+id/Location_btn_rightIcon"

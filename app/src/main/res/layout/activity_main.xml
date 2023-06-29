@@ -4,43 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".mainActivities.MainActivity">
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="58dp"
-        android:background="@drawable/arc">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="193dp"
-            android:layout_height="69dp"
-            android:fontFamily="sans-serif-black"
-            android:text="MobiTail"
-            android:textSize="45dp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.589"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.229" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="322dp"
-        android:layout_height="409dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/arc"
-        android:rotation="180">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="193dp"
+        android:layout_height="69dp"
+        android:fontFamily="sans-serif-black"
+        android:text="MobiTail"
+        android:textSize="45dp"
+        android:textStyle="italic"
+        android:layout_marginTop="70dp"
+        android:layout_toRightOf="@id/Mobitail_Icon"/>
 
     <ImageView
         android:id="@+id/Mobitail_Icon"

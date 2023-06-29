@@ -4,363 +4,353 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    android:elevation="4dp"
-    tools:context=".mainActivities.ProfileActivity">
-
-    <ImageButton
-        android:id="@+id/exit_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="13dp"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="359dp"
-        android:layout_height="442dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/arc">
-
-        <ImageButton
-            android:id="@+id/Setting_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="14dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:backgroundTint="@color/light_blue"
-            android:contentDescription="Profile Picture"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_settings_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.016" />
-
-        <ImageButton
-            android:id="@+id/Notifications"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/notification"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/Setting_btn"
-            app:layout_constraintHorizontal_bias="0.935"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.033" />
-
-        <ImageButton
-            android:id="@+id/Cards"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/cards"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/Setting_btn"
-            app:layout_constraintHorizontal_bias="0.746"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.033" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
-        android:id="@+id/Profile_recycleview"
+    android:background="@color/white"
+    tools:context=".Consumer.mainActivities.ProfileActivity">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="620dp"
-        android:layout_centerVertical="true"
-        android:padding="5dp"
-        android:scrollbars="none">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
-                android:layout_height="310dp">
+                android:layout_height="65dp"
+                android:background="@android:color/transparent"
+                android:gravity="top">
 
                 <TextView
-                    android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Profile"
-                    android:textSize="45dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/Profile_picture"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5" />
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/Profile_picture"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="30dp"
+                <ImageButton
+                    android:id="@+id/Setting_btn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginHorizontal="10dp"
+                    android:src="@drawable/settings"
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/profile"
-                    app:civ_border_color="@android:color/transparent"
-                    app:civ_border_overlay="false"
-                    app:civ_border_width="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/User_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:layout_constraintVertical_bias="0.5" />
+                    android:scaleType="centerInside"
+                    android:src="@drawable/notification" />
 
-                <TextView
-                    android:id="@+id/User_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="John Doe"
-                    android:textSize="35dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/User_email"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Profile_picture"
-                    app:layout_constraintVertical_bias="0.5" />
+            </com.google.android.material.appbar.MaterialToolbar>
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/User_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="abcuser@gmail.com"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/User_name"
-                    app:layout_constraintVertical_bias="0.5" />
+        <ScrollView
+            android:id="@+id/Profile_recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="620dp"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:scrollbars="none">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginVertical="15dp"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center"
-                android:background="@drawable/rounded_border">
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/MyWallet_btn_leftIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/wallets" />
-
-                <TextView
-                    android:id="@+id/MyWallet_btn_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toStartOf="@id/MyWallet_btn_rightIcon"
-                    android:layout_toEndOf="@id/MyWallet_btn_leftIcon"
-                    android:text="My Balances"
-                    android:textSize="24sp" />
-
-                <ImageView
-                    android:id="@+id/MyWallet_btn_rightIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/next" />
-
-                <Button
-                    android:id="@+id/MyWallet_btn"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/light_blue" />
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
-            </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginVertical="15dp"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center"
-                android:background="@drawable/rounded_border">
+                        <TextView
+                            android:id="@+id/edit_profile_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edit Profile"
+                            android:textStyle="normal"
+                            android:textSize="20dp" />
 
-                <ImageView
-                    android:id="@+id/MyPurchases_btn_leftIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/purchases" />
+                        <TextView
+                            android:id="@+id/User_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="John Doe"
+                            android:textSize="35dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="20dp" />
 
-                <TextView
-                    android:id="@+id/MyPurchases_btn_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toStartOf="@id/MyPurchases_btn_rightIcon"
-                    android:layout_toEndOf="@id/MyPurchases_btn_leftIcon"
-                    android:text="My Purchases"
-                    android:textSize="24sp" />
+                        <TextView
+                            android:id="@+id/location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nairobi"
+                            android:textStyle="normal"
+                            android:textSize="20dp" />
 
-                <ImageView
-                    android:id="@+id/MyPurchases_btn_rightIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/next" />
+                        <TextView
+                            android:id="@+id/User_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed-medium"
+                            android:text="abcuser@gmail.com"
+                            android:textSize="20dp" />
 
-                <Button
-                    android:id="@+id/MyPurchases_btn"
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="155dp"
+                        android:layout_height="match_parent"
+                        android:gravity="right">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/Profile_picture"
+                            android:layout_width="155dp"
+                            android:layout_height="155dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/profile"
+                            app:civ_border_color="@android:color/transparent"
+                            app:civ_border_overlay="false"
+                            app:civ_border_width="0dp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/light_blue" />
+                    android:layout_height="60dp"
+                    android:layout_marginVertical="15dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_border">
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/MyWallet_btn_leftIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/wallets" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="5dp"
-                android:layout_marginVertical="15dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center"
-                android:background="@drawable/rounded_border">
+                    <TextView
+                        android:id="@+id/MyWallet_btn_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toStartOf="@id/MyWallet_btn_rightIcon"
+                        android:layout_toEndOf="@id/MyWallet_btn_leftIcon"
+                        android:text="My Balances"
+                        android:textSize="24sp" />
 
-                <ImageView
-                    android:id="@+id/Messages_btn_leftIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/messages" />
+                    <ImageView
+                        android:id="@+id/MyWallet_btn_rightIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/next" />
 
-                <TextView
-                    android:id="@+id/Messages_btn_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toStartOf="@id/Messages_btn_rightIcon"
-                    android:layout_toEndOf="@id/Messages_btn_leftIcon"
-                    android:text="Messages"
-                    android:textSize="24sp" />
+                    <Button
+                        android:id="@+id/MyWallet_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/light_blue" />
 
-                <ImageView
-                    android:id="@+id/Messages_btn_rightIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/next" />
+                </RelativeLayout>
 
-                <Button
-                    android:id="@+id/Messages_btn"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/light_blue" />
+                    android:layout_height="60dp"
+                    android:layout_marginVertical="15dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_border">
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/MyPurchases_btn_leftIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/purchases" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginVertical="15dp"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center"
-                android:background="@drawable/rounded_border">
+                    <TextView
+                        android:id="@+id/MyPurchases_btn_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toStartOf="@id/MyPurchases_btn_rightIcon"
+                        android:layout_toEndOf="@id/MyPurchases_btn_leftIcon"
+                        android:text="My Purchases"
+                        android:textSize="24sp" />
 
-                <ImageView
-                    android:id="@+id/MyAddresses_btn_leftIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/address" />
+                    <ImageView
+                        android:id="@+id/MyPurchases_btn_rightIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/next" />
 
-                <TextView
-                    android:id="@+id/MyAddresses_btn_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toStartOf="@id/MyAddresses_btn_rightIcon"
-                    android:layout_toEndOf="@id/MyAddresses_btn_leftIcon"
-                    android:text="Addresses"
-                    android:textSize="24sp" />
+                    <Button
+                        android:id="@+id/MyPurchases_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/light_blue" />
 
-                <ImageView
-                    android:id="@+id/MyAddresses_btn_rightIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/next" />
+                </RelativeLayout>
 
-                <Button
-                    android:id="@+id/MyAddresses_btn"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/light_blue" />
+                    android:layout_height="60dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="5dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_border">
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/Messages_btn_leftIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/messages" />
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/Messages_btn_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toStartOf="@id/Messages_btn_rightIcon"
+                        android:layout_toEndOf="@id/Messages_btn_leftIcon"
+                        android:text="Messages"
+                        android:textSize="24sp" />
 
-    </ScrollView>
+                    <ImageView
+                        android:id="@+id/Messages_btn_rightIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/next" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/Messages_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/light_blue" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginVertical="15dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_border">
+
+                    <ImageView
+                        android:id="@+id/MyAddresses_btn_leftIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/address" />
+
+                    <TextView
+                        android:id="@+id/MyAddresses_btn_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toStartOf="@id/MyAddresses_btn_rightIcon"
+                        android:layout_toEndOf="@id/MyAddresses_btn_leftIcon"
+                        android:text="Addresses"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:id="@+id/MyAddresses_btn_rightIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/next" />
+
+                    <Button
+                        android:id="@+id/MyAddresses_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/light_blue" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_nav_card_background"
-        android:elevation="15dp"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation_menu">
+        android:layout_alignParentBottom="true">
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:focusable="false"
+            android:verticalScrollbarPosition="defaultPosition"
+            android:background="@drawable/bottom_nav_card_background"
+            android:elevation="15dp"
+            android:layout_alignParentBottom="true"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_navigation_menu">
 
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </RelativeLayout>
 </RelativeLayout>
