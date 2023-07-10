@@ -57,6 +57,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.hbb20:ccp:2.6.1'
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
 
 }

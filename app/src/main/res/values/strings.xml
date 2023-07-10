@@ -1,7 +1,32 @@
 <resources>
+    <string name="app_name">MobileRetail</string>
+    <string name="title_activity_retail_home">RetailHomeActivity</string>
+    <string name="test_description">Description:
+Introducing our Premium Ballpoint Pen Set, a must-have for any writing enthusiast or professional. This set includes five high-quality ballpoint pens that offer a smooth and effortless writing experience, making it a perfect companion for your daily tasks, note-taking, or creative endeavors.
+
+Key Features:
+1. Smooth Writing: Experience effortless writing with our pens high-quality ink flow.
+2. Comfortable Grip: Ergonomic design ensures a fatigue-free writing experience.
+3. Sleek and Professional: Polished metallic finish for a sophisticated look.
+4. Long-lasting and Reliable: Built to last with durable materials.
+5. Versatile and Convenient: Perfect for notes, letters, and on-the-go use.
+
+Add this Premium Ballpoint Pen Set to your collection and elevate your writing experience. Its also a perfect gift for students, professionals, or anyone who appreciates the art of writing. Experience the joy of writing with our Premium Ballpoint Pen Set today!
+
+Price: $19.99</string>
+
+
+    <!-- Strings used for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <!--  Strings used for dropdown navigation -->
     <string-array name="options_array">
         <item>Option 1</item>
         <item>Option 2</item>
         <item>Option 3</item>
     </string-array>
+
 </resources>

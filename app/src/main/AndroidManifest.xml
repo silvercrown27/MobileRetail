@@ -16,13 +16,31 @@
         android:theme="@style/Theme.MobileRetail"
         tools:targetApi="31">
         <activity
-            android:name=".Retaier.FinalSignupstep"
+            android:name=".consumer.mainActivities.SignupProfie"
             android:exported="false" />
         <activity
-            android:name=".Retaier.SignUpStep2"
+            android:name=".retailer.mainActivities.ProductDetails"
             android:exported="false" />
         <activity
-            android:name=".Retaier.retailSignupActivity"
+            android:name=".retailer.mainActivities.RetailSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".retailer.mainActivities.RetailAccountsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".retailer.mainActivities.ProductsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".retailer.mainActivities.RetailDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".retailer.mainActivities.FinalSignupstep"
+            android:exported="false" />
+        <activity
+            android:name=".retailer.mainActivities.SignUpStep2"
+            android:exported="false" />
+        <activity
+            android:name=".retailer.mainActivities.retailSignupActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -35,52 +53,52 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Consumer.secondaryActivities.GroceriesActivity"
+            android:name=".consumer.secondaryActivities.GroceriesActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.SweetsActivity"
+            android:name=".consumer.secondaryActivities.SweetsActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.SnacksActivity"
+            android:name=".consumer.secondaryActivities.SnacksActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.CerialsActivity"
+            android:name=".consumer.secondaryActivities.CerialsActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.StationariesActivity"
+            android:name=".consumer.secondaryActivities.StationariesActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.ClothingActivity"
+            android:name=".consumer.secondaryActivities.ClothingActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.ElectronicsActivity"
+            android:name=".consumer.secondaryActivities.ElectronicsActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.secondaryActivities.DrinksActivity"
+            android:name=".consumer.secondaryActivities.DrinksActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.CategoriesActivity"
+            android:name=".consumer.mainActivities.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.SettingsActivity"
+            android:name=".consumer.mainActivities.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.FavoritesActivity"
+            android:name=".consumer.mainActivities.FavoritesActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.CartActivity"
+            android:name=".consumer.mainActivities.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.ProfileActivity"
+            android:name=".consumer.mainActivities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.HomeActivity"
+            android:name=".consumer.mainActivities.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".SigninActivity"
             android:exported="false" />
         <activity
-            android:name=".Consumer.mainActivities.SignUpActivity"
+            android:name=".consumer.mainActivities.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".StartUpActivity"

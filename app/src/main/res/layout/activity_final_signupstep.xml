@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Retaier.FinalSignupstep">
+    tools:context=".retailer.mainActivities.FinalSignupstep">
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="65dp">
 
         <TextView
             android:id="@+id/signuplabel"
@@ -25,11 +25,19 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="65dp">
+        android:layout_marginTop="65dp"
+        android:layout_marginHorizontal="15dp"
+        android:backgroundTint="@color/monochrome_light"
+        app:cardCornerRadius="15dp"
+        android:elevation="10dp">
 
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/content_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:iconifiedByDefault="false"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search Your Products"/>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -42,6 +50,21 @@
             android:layout_width="170dp"
             android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:text="Select Your Items"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                tools:listitem="@layout/finalsignupsteprecycleview"/>
+
         </RelativeLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -50,7 +73,33 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:text="Your Selected Items"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="80dp"
+                tools:listitem="@layout/finalsignupsteplist"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_ac_btn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="8dp"
+                android:text="Create Your Store"
+                android:backgroundTint="@color/black"
+                app:cornerRadius="10dp" />
 
         </RelativeLayout>
     </LinearLayout>

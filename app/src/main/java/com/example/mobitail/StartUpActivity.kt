@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.mobitail.Consumer.mainActivities.SignUpActivity
-import com.example.mobitail.Retaier.SignUpStep2
-import com.example.mobitail.Retaier.retailSignupActivity
+import com.example.mobitail.consumer.mainActivities.SignUpActivity
+import com.example.mobitail.retailer.mainActivities.retailSignupActivity
 
 class StartUpActivity : AppCompatActivity() {
     lateinit var store_ac_btn: Button

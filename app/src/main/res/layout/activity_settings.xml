@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Consumer.mainActivities.SettingsActivity">
+    tools:context=".consumer.mainActivities.SettingsActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="wrap_content"
@@ -81,8 +81,6 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Location"
                         android:textSize="24sp" />
 
@@ -97,7 +95,6 @@
                         android:layout_alignParentRight="true" />
 
                     <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -105,7 +102,6 @@
                         android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
-                        android:id="@+id/Location_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -126,7 +122,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -134,19 +129,15 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Language"
                         android:textSize="24sp" />
 
                     <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -154,7 +145,6 @@
                         android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
-                        android:id="@+id/Location_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -175,7 +165,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -183,19 +172,15 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Appearance"
                         android:textSize="24sp" />
 
                     <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -203,7 +188,6 @@
                         android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
-                        android:id="@+id/Location_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -239,7 +223,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -247,25 +230,17 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Push all"
                         android:textSize="24sp" />
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/Location_btn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:background="@android:color/transparent"
-                        android:textColor="@color/light_blue" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -281,7 +256,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -289,17 +263,18 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Messages"
                         android:textSize="24sp" />
 
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -314,7 +289,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -322,24 +296,17 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Offers"
                         android:textSize="24sp" />
 
-                    <Button
-                        android:id="@+id/Location_btn"
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@android:color/transparent"
-                        android:textColor="@color/light_blue" />
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -370,7 +337,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -378,19 +344,15 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Password and Security"
                         android:textSize="24sp" />
 
                     <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -398,7 +360,6 @@
                         android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
-                        android:id="@+id/Location_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -419,7 +380,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -427,19 +387,15 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Privacy"
                         android:textSize="24sp" />
 
                     <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -447,7 +403,6 @@
                         android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
-                        android:id="@+id/Location_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -468,7 +423,6 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
-                        android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -476,19 +430,15 @@
                         android:src="@drawable/wallets" />
 
                     <TextView
-                        android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="17dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_toStartOf="@id/Location_btn_rightIcon"
-                        android:layout_toEndOf="@id/Location_btn_leftIcon"
                         android:text="Subscriptions"
                         android:textSize="24sp" />
 
                     <ImageView
-                        android:id="@+id/Location_btn_rightIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
@@ -496,7 +446,6 @@
                         android:src="@drawable/baseline_arrow_forward_24" />
 
                     <Button
-                        android:id="@+id/Location_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"

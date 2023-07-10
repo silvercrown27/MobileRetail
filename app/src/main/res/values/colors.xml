@@ -5,7 +5,9 @@
     <color name="dark_bue">#232E61</color>
     <color name="orange">#FFFFFF</color>
     <color name="light_blue">#FFF7D4</color>
-    <color name="light">#C2C3CA</color>
+    <color name="light">#EBF2EA</color>
     <color name="grey">#CCCCCC</color>
     <color name="monochrome_light">#F2F2F2</color>
+    <color name="monochrome_lightRed">#C3F2CB</color>
+    <color name="green">#90EE90</color>
 </resources>

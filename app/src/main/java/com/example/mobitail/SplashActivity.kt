@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.Toast
-import com.example.mobitail.Consumer.mainActivities.HomeActivity
-import com.example.mobitail.Consumer.modalClasses.User
+import com.example.mobitail.consumer.mainActivities.HomeActivity
+import com.example.mobitail.consumer.modalClasses.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

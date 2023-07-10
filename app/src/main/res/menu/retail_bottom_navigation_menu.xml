@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_accounts"
+        android:icon="@drawable/user1"
+        android:title="account" />
+    <item
+        android:id="@+id/action_dashboard"
+        android:icon="@drawable/dashboard"
+        android:title="dashboard" />
+    <item
+        android:id="@+id/action_products"
+        android:icon="@drawable/products"
+        android:title="products" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/settings"
+        android:title="settings" />
+</menu>
