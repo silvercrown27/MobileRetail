@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.example.mobitail.consumer.mainActivities.HomeActivity
 import com.example.mobitail.consumer.modalClasses.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -20,15 +21,9 @@ import com.google.firebase.database.ValueEventListener
 
 
 class SplashActivity : AppCompatActivity() {
-    private lateinit var dbref: DatabaseReference
-    private lateinit var database: SQLiteDatabase
-    private val SPLASH_DURATION: Long = 2000
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        dbref = FirebaseDatabase.getInstance().getReference("user")
 
         val fadeIn = AlphaAnimation(0f, 1f)
         fadeIn.duration = 1000
@@ -51,43 +46,35 @@ class SplashActivity : AppCompatActivity() {
         val cursor = db.rawQuery(selectQuery, null)
 
         if (cursor.moveToFirst()) {
-            val firstNameColumnIndex = cursor.getColumnIndex("firstname")
-            val lastNameColumnIndex = cursor.getColumnIndex("lastname")
             val emailColumnIndex = cursor.getColumnIndex("email")
-            val activeColumnIndex = cursor.getColumnIndex("active")
             val deviceNameColumnIndex = cursor.getColumnIndex("devicename")
             val deviceIdColumnIndex = cursor.getColumnIndex("deviceid")
 
-            // Check if the column exists
-            if (firstNameColumnIndex != -1 && lastNameColumnIndex != -1 && emailColumnIndex != -1 &&
-                activeColumnIndex != -1) {
-                val firstName = cursor.getString(firstNameColumnIndex)
-                val lastName = cursor.getString(lastNameColumnIndex)
+            if (emailColumnIndex != -1 && deviceIdColumnIndex != -1 && deviceNameColumnIndex != -1) {
                 val email = cursor.getString(emailColumnIndex)
-                val active = cursor.getInt(activeColumnIndex)
                 val devicename = cursor.getString(deviceNameColumnIndex)
                 val deviceid = cursor.getString(deviceIdColumnIndex)
 
-                Toast.makeText(
-                    this@SplashActivity,
-                    "User Information:\nFirst Name: $firstName\nLast Name: $lastName\nEmail: $email",
-                    Toast.LENGTH_LONG
-                ).show()
+                FirebaseUtils.isUserLoggedIn(email) { isLoggedIn ->
+                    if (isLoggedIn) {
+                        Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show()
+                        FirebaseUtils.isDeviceLoggedIn(devicename, deviceid, this@SplashActivity){ isLoggedIn ->
+                            if (isLoggedIn) {
+                                val intent = Intent(this@SplashActivity, HomeActivity::class.java)
+                                startActivity(intent)
 
-                if (active == 0) {
-                    if (check_database(email, devicename, deviceid)){
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            val intent = Intent(this@SplashActivity, HomeActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }, SPLASH_DURATION)
-                    }
-                } else {
-                    Handler(Looper.getMainLooper()).postDelayed({
+                            } else {
+                                Toast.makeText(this, "Device unknown!\nplease sign in again", Toast.LENGTH_SHORT).show()
+                                FirebaseUtils.logoutUser()
+                                val intent = Intent(this@SplashActivity, SigninActivity::class.java)
+                                startActivity(intent)
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@SplashActivity, StartUpActivity::class.java)
                         startActivity(intent)
-                        finish()
-                    }, SPLASH_DURATION)
+                    }
                 }
             } else {
                 Toast.makeText(
@@ -95,12 +82,8 @@ class SplashActivity : AppCompatActivity() {
                     "Column not found in the database",
                     Toast.LENGTH_SHORT
                 ).show()
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val intent = Intent(this@SplashActivity, SigninActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }, SPLASH_DURATION)
+                val intent = Intent(this@SplashActivity, SigninActivity::class.java)
+                startActivity(intent)
             }
         } else {
             Toast.makeText(
@@ -108,72 +91,14 @@ class SplashActivity : AppCompatActivity() {
                 "No data found in the database",
                 Toast.LENGTH_SHORT
             ).show()
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }, SPLASH_DURATION)
+            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            startActivity(intent)
         }
 
         cursor.close()
     }
+
     private fun getDb(): SQLiteDatabase {
-        if (!::database.isInitialized) {
-            database = openOrCreateDatabase("mobitail", Context.MODE_PRIVATE, null)
-            database.execSQL("CREATE TABLE IF NOT EXISTS users(" +
-                    "firstname VARCHAR," +
-                    "lastname VARCHAR," +
-                    "email VARCHAR," +
-                    "devicename VARCHAR," +
-                    "deviceid VARCHAR," +
-                    "contact VARCHAR," +
-                    "location VARCHAR)")
-        }
-        return database
-    }
-    private fun check_database(email: String, devicename: String, deviceID: String): Boolean {
-        var userExists = true
-
-        dbref.orderByChild("e_mail").equalTo(email)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        for (userSnapshot in snapshot.children) {
-                            val user = userSnapshot.getValue(User::class.java)
-                            if (user?.deviceId == deviceID && user?.deviceName == devicename) {
-                                Toast.makeText(
-                                    this@SplashActivity,
-                                    "SUCCESS!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                userExists = false
-                                Toast.makeText(
-                                    this@SplashActivity,
-                                    "FAIL!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                            return
-                        }
-                    } else {
-                        userExists = false
-                        Toast.makeText(
-                            this@SplashActivity,
-                            "User does not wxist!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(
-                        this@SplashActivity,
-                        "An error occurred while accessing the database.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
-        return userExists
+        return SQLDatabaseManager.getDatabase(applicationContext)
     }
 }

@@ -8,13 +8,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.example.mobitail.FirebaseUtils
 import com.example.mobitail.R
+import com.example.mobitail.SQLDatabaseManager
 import com.example.mobitail.SigninActivity
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var back_btn: ImageButton
     private lateinit var logout_btn: Button
-    private lateinit var database: SQLiteDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +33,11 @@ class SettingsActivity : AppCompatActivity() {
 
         logout_btn.setOnClickListener {
 
+            FirebaseUtils.logoutUser()
+
             val db = getDb()
 
-            val selectQuery = "SELECT * FROM users WHERE active = 0"
+            val selectQuery = "SELECT * FROM users"
             val cursor = db.rawQuery(selectQuery, null)
 
             if (cursor.moveToFirst()) {
@@ -74,22 +77,10 @@ class SettingsActivity : AppCompatActivity() {
 
             val intent = Intent(this@SettingsActivity, SigninActivity::class.java)
             startActivity(intent)
-
         }
     }
 
     private fun getDb(): SQLiteDatabase {
-        if (!::database.isInitialized) {
-            database = openOrCreateDatabase("mobitail", Context.MODE_PRIVATE, null)
-            database.execSQL("CREATE TABLE IF NOT EXISTS users(" +
-                    "firstname VARCHAR," +
-                    "lastname VARCHAR," +
-                    "email VARCHAR," +
-                    "devicename VARCHAR," +
-                    "deviceid VARCHAR," +
-                    "contact VARCHAR," +
-                    "location VARCHAR)")
-        }
-        return database
+        return SQLDatabaseManager.getDatabase(applicationContext)
     }
 }

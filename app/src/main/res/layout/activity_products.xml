@@ -40,9 +40,11 @@
         android:layout_marginTop="75dp">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/rmProduct_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
             android:text="Remove a Product"
             android:textColor="@color/black"
             android:backgroundTint="@color/monochrome_lightRed"
@@ -50,10 +52,11 @@
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/addProduct_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="Remove a Product"
+            android:text="Add a Product"
             android:textColor="@color/black"
             android:backgroundTint="@color/monochrome_lightRed"
             app:cornerRadius="12dp"

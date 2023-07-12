@@ -5,8 +5,12 @@ import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.mobitail.FirebaseUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import com.example.mobitail.R
@@ -15,8 +19,10 @@ import com.example.mobitail.consumer.adapterClasses.SliderAdapter
 import com.example.mobitail.consumer.modalClasses.SliderData
 import com.example.mobitail.retailer.mainActivities.ProductDetails
 import com.smarteist.autoimageslider.SliderView
+import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeActivity : AppCompatActivity() {
+    private lateinit var profileImg: CircleImageView
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var customSliderAdapter: SliderAdapter
     private lateinit var groupsRV: RecyclerView
@@ -28,6 +34,19 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         slider = findViewById(R.id.slider)
+        profileImg = findViewById(R.id.Profile_picture)
+
+        FirebaseUtils.prepareData(this@HomeActivity) { user ->
+            if (user != null) {
+                Glide.with(this@HomeActivity)
+                    .load(user.profileimage)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(profileImg)
+
+            } else {
+                Toast.makeText(this@HomeActivity, "User data is not available", Toast.LENGTH_SHORT).show()
+            }
+        }
         customSliderAdapter = SliderAdapter()
         slider.setSliderAdapter(customSliderAdapter)
         slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);

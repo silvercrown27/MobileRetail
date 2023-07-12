@@ -3,8 +3,12 @@ package com.example.mobitail.consumer.mainActivities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.mobitail.FirebaseUtils
 import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.CategoriesAdapter
 import com.example.mobitail.consumer.adapterClasses.CategoryItemsAdapter
@@ -17,8 +21,10 @@ import com.example.mobitail.consumer.secondaryActivities.SnacksActivity
 import com.example.mobitail.consumer.secondaryActivities.StationariesActivity
 import com.example.mobitail.consumer.secondaryActivities.SweetsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import de.hdodenhof.circleimageview.CircleImageView
 
 class CategoriesActivity : AppCompatActivity() {
+    private lateinit var profileImg: CircleImageView
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var customAdapter: CategoriesAdapter
     private lateinit var categoryitemsRV: RecyclerView
@@ -30,6 +36,20 @@ class CategoriesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_categories)
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
+        profileImg = findViewById(R.id.Profile_picture)
+
+        FirebaseUtils.prepareData(this) { user ->
+            if (user != null) {
+                Glide.with(this)
+                    .load(user.profileimage)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(profileImg)
+
+            } else {
+                Toast.makeText(this, "User data is not available", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         bottomNavigationView.selectedItemId = 0
         bottomNavigationView.selectedItemId = R.id.action_categories
         bottomNavigationView.setOnItemSelectedListener {

@@ -3,13 +3,19 @@ package com.example.mobitail.consumer.mainActivities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.mobitail.FirebaseUtils
 import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.CartAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import de.hdodenhof.circleimageview.CircleImageView
 
 class CartActivity : AppCompatActivity() {
+    private lateinit var profileImg: CircleImageView
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var cartItems: RecyclerView
     private lateinit var cartItems_Adapter: CartAdapter
@@ -19,6 +25,19 @@ class CartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cart)
 
         cartItems = findViewById(R.id.cart_items)
+        profileImg = findViewById(R.id.Profile_picture)
+
+        FirebaseUtils.prepareData(this) { user ->
+            if (user != null) {
+                Glide.with(this)
+                    .load(user.profileimage)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(profileImg)
+
+            } else {
+                Toast.makeText(this, "User data is not available", Toast.LENGTH_SHORT).show()
+            }
+        }
         cartItems_Adapter = CartAdapter()
         cartItems.adapter = cartItems_Adapter
         cartItems.layoutManager = LinearLayoutManager(this)

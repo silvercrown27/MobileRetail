@@ -95,7 +95,7 @@ class SignupProfie : AppCompatActivity() {
 
                                         login(sdbref, key, password, userPass) { isUser ->
                                             if (isUser) {
-                                                userSnapshot.child("deviceName").ref.setValue(downloadUrl)
+                                                userSnapshot.child("profileimage").ref.setValue(downloadUrl)
                                                 Toast.makeText(
                                                     this@SignupProfie,
                                                     "Profile Created Successfully!",

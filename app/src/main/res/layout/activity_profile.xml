@@ -27,33 +27,34 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hello"
-                        android:textSize="24dp"
-                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/user_firstname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="John"
+                        android:text="Hello John"
                         android:textSize="24dp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_alignParentBottom="true">
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="3dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/mentionred"/>
 
                     <TextView
+                        android:id="@+id/user_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="abcuser24@gmail.com"
                         android:textSize="16dp"/>
                 </LinearLayout>
             </RelativeLayout>
@@ -86,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginHorizontal="10dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
@@ -99,7 +100,6 @@
                             android:layout_width="141dp"
                             android:layout_height="141dp"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/profile"
                             app:civ_border_color="@android:color/transparent"
                             app:civ_border_overlay="false"
                             app:civ_border_width="0dp" />
@@ -109,7 +109,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="141dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -126,7 +126,7 @@
                                 <ImageView
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
-                                    android:src="@drawable/cart"
+                                    android:src="@drawable/edit"
                                     android:scaleType="centerCrop"
                                     android:background="@android:color/transparent"/>
 
@@ -146,7 +146,6 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginHorizontal="10dp"
                                 android:src="@drawable/settings"
                                 android:scaleType="centerCrop"
                                 android:background="@android:color/transparent" />
@@ -154,10 +153,10 @@
                         </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/User_name"
+                            android:id="@+id/user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="John Doe"
+                            android:text=""
                             android:textSize="23dp"
                             android:textStyle="bold"
                             android:layout_marginTop="7dp" />
@@ -170,18 +169,18 @@
                             android:backgroundTint="@android:color/transparent">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"
                                 android:scaleType="centerCrop"
                                 android:background="@android:color/transparent"/>
     
                             <TextView
-                                android:id="@+id/location"
+                                android:id="@+id/user_location"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="24dp"
+                                android:layout_marginLeft="18dp"
                                 android:text="Nairobi, Kenya"
                                 android:textStyle="normal"
                                 android:textSize="20dp" />
@@ -189,7 +188,7 @@
                         </com.google.android.material.card.MaterialCardView>
                         
                         <TextView
-                            android:id="@+id/User_email"
+                            android:id="@+id/User_gender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"

@@ -8,6 +8,7 @@ data class CustomerTable(
     val email: String = "",
     val contact: String = "",
     val location: String = "",
+    val gender: String = "",
     val password: String = "",
     val doc: String = "",
     val deviceName: String = "",

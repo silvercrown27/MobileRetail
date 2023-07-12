@@ -1,5 +1,6 @@
 package com.example.mobitail
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.util.Base64
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.DatabaseReference
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 
 import javax.crypto.spec.SecretKeySpec
 
@@ -40,16 +42,7 @@ class SigninActivity : AppCompatActivity() {
 
         sdbref = FirebaseDatabase.getInstance().getReference("secrets")
         dbref = FirebaseDatabase.getInstance().getReference("customers")
-        db = openOrCreateDatabase("mobitail", Context.MODE_PRIVATE, null)
-        db.execSQL("CREATE TABLE IF NOT EXISTS users(" +
-                "firstname VARCHAR," +
-                "lastname VARCHAR," +
-                "email VARCHAR," +
-                "devicename VARCHAR," +
-                "deviceid VARCHAR," +
-                "contact VARCHAR," +
-                "location VARCHAR," +
-                "active INTEGER)")
+        db = getDb()
 
         back = findViewById(R.id.Back_btn)
         email = findViewById(R.id.email)
@@ -78,79 +71,7 @@ class SigninActivity : AppCompatActivity() {
                 val userEmail = email.text.toString().trim()
                 val userPassword = password.text.toString().trim()
 
-                dbref.orderByChild("email").equalTo(userEmail)
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if (snapshot.exists()) {
-                                for (userSnapshot in snapshot.children) {
-                                    val key = userSnapshot.key
-                                    val user = userSnapshot.getValue(CustomerTable::class.java)
-                                    val password = user?.password
-                                    login(sdbref, key, password, userPassword) { isUser ->
-                                        if (isUser) {
-                                            Toast.makeText(
-                                                this@SigninActivity,
-                                                "LOGIN SUCCESS!",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            userSnapshot.child("deviceName").ref.setValue(Build.MODEL)
-                                            userSnapshot.child("deviceId").ref.setValue(
-                                                Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-                                            ).addOnCompleteListener {
-                                                Toast.makeText(
-                                                    this@SigninActivity,
-                                                    "User Registered Successfully!",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-
-                                                val firstName = user?.firstname ?: ""
-                                                val lastName = user?.lastname ?: ""
-                                                val deviceName = Build.MODEL
-                                                val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-                                                val contact = user?.contact ?: ""
-                                                val location = user?.location ?: ""
-                                                val active = 0
-
-                                                val insertQuery = "INSERT INTO users (firstname, lastname, email, devicename, deviceid, contact, location, active) " +
-                                                        "VALUES ('$firstName', '$lastName', '$userEmail', '$deviceName', '$deviceId', '$contact', '$location', '$active')"
-                                                db.execSQL(insertQuery)
-                                                db.close()
-
-                                                val intent = Intent(this@SigninActivity, HomeActivity::class.java)
-                                                startActivity(intent)
-
-                                                overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
-                                            }
-                                                .addOnFailureListener { err ->
-                                                    Toast.makeText(this@SigninActivity, "Error ${err.message}", Toast.LENGTH_SHORT).show()
-                                                }
-                                        } else {
-                                            Toast.makeText(
-                                                this@SigninActivity,
-                                                "Sorry, your password is incorrect!",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
-                                    }
-                                }
-                            } else {
-                                Toast.makeText(
-                                    this@SigninActivity,
-                                    "Sorry, Account does not exist!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(
-                                this@SigninActivity,
-                                "An error occurred while accessing the database.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    })
-
+                loginUser(userEmail, userPassword)
             }
         }
 
@@ -162,6 +83,10 @@ class SigninActivity : AppCompatActivity() {
         }
     }
 
+    private fun getDb(): SQLiteDatabase {
+        return SQLDatabaseManager.getDatabase(applicationContext)
+    }
+
     private fun login(sdbref: DatabaseReference, userid: String?, password: String?, input: String, callback: (Boolean) -> Unit) {
         sdbref.orderByKey().equalTo(userid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -171,15 +96,12 @@ class SigninActivity : AppCompatActivity() {
                         for (userSnapshot in snapshot.children) {
                             val data = userSnapshot.getValue(Secrets::class.java)
                             if (data != null) {
-                                // Retrieve the key and initV as Int arrays
                                 val keyBytes = data.key?.let { convertIntArrayToByteArray(it.toIntArray()) }
                                 val initVector = data.initV?.let { convertIntArrayToByteArray(it.toIntArray()) }
 
-                                // Create the SecretKey and AESDecrypt objects
                                 val secretKey = SecretKeySpec(keyBytes, "AES")
                                 val aesDecrypt = AESDecrypt(secretKey, initVector)
 
-                                // Decrypt the password
                                 val decryptedPassword = aesDecrypt.decrypt(
                                     Base64.decode(
                                         password,
@@ -217,5 +139,121 @@ class SigninActivity : AppCompatActivity() {
             byteArray[i] = intArray[i].toByte()
         }
         return byteArray
+    }
+
+    private fun loginUser(userEmail: String, userPassword: String){
+        val auth = FirebaseAuth.getInstance()
+        auth.signInWithEmailAndPassword(userEmail, userPassword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val userId = auth.currentUser?.uid
+                    updateAccount(userId, userPassword)
+
+                } else {
+                    Toast.makeText(this@SigninActivity, "Login failed. Please check your credentials.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun updateAccount(userId: String?, input: String){
+        dbref.orderByKey().equalTo(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("HardwareIds")
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (userSnapshot in snapshot.children) {
+                            val key = userSnapshot.key
+                            val user =
+                                userSnapshot.getValue(CustomerTable::class.java)
+                            val password = user?.password
+                            login(
+                                sdbref,
+                                key,
+                                password,
+                                input
+                            ) { isUser ->
+                                if (isUser) {
+                                    Toast.makeText(
+                                        this@SigninActivity,
+                                        "LOGIN SUCCESS!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    userSnapshot.child("deviceName").ref.setValue(
+                                        Build.MODEL
+                                    )
+                                    userSnapshot.child("deviceId").ref.setValue(
+                                        Settings.Secure.getString(
+                                            contentResolver,
+                                            Settings.Secure.ANDROID_ID
+                                        )
+                                    ).addOnCompleteListener {
+                                        Toast.makeText(
+                                            this@SigninActivity,
+                                            "User Registered Successfully!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+
+                                        val firstName = user?.firstname
+                                        val lastName = user?.lastname
+                                        val email = user?.email
+                                        val deviceName = Build.MODEL
+                                        val deviceId =
+                                            Settings.Secure.getString(
+                                                contentResolver,
+                                                Settings.Secure.ANDROID_ID
+                                            )
+                                        val contact = user?.contact
+                                        val location = user?.location
+                                        val gender = user?.gender
+
+                                        val insertQuery = "INSERT INTO users (firstname, lastname, email, devicename, deviceid, contact, location, gender) " +
+                                                "VALUES ('$firstName', '$lastName', '$email', '$deviceName', '$deviceId', '$contact', '$location', '$gender')"
+                                        db.execSQL(insertQuery)
+                                        db.close()
+
+                                        val intent = Intent(
+                                            this@SigninActivity,
+                                            HomeActivity::class.java
+                                        )
+                                        startActivity(intent)
+
+                                        overridePendingTransition(
+                                            R.anim.fade_animation,
+                                            R.anim.fade_out
+                                        )
+                                    }
+                                        .addOnFailureListener { err ->
+                                            Toast.makeText(
+                                                this@SigninActivity,
+                                                "Error ${err.message}",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                } else {
+                                    Toast.makeText(
+                                        this@SigninActivity,
+                                        "Sorry, your password is incorrect!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@SigninActivity,
+                            "Sorry, Account does not exist!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        this@SigninActivity,
+                        "An error occurred while accessing the database.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
     }
 }
