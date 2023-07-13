@@ -6,8 +6,8 @@
     android:paddingVertical="7dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginVertical="10dp"
-    android:layout_gravity="center"
+    android:layout_marginVertical="20dp"
+    android:layout_gravity="center_horizontal"
     android:background="@drawable/rounded_border">
 
     <ImageView

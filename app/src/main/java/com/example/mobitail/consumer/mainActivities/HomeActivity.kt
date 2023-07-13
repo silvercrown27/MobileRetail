@@ -17,7 +17,6 @@ import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.HomeItemsAdapter
 import com.example.mobitail.consumer.adapterClasses.SliderAdapter
 import com.example.mobitail.consumer.modalClasses.SliderData
-import com.example.mobitail.retailer.mainActivities.ProductDetails
 import com.smarteist.autoimageslider.SliderView
 import de.hdodenhof.circleimageview.CircleImageView
 

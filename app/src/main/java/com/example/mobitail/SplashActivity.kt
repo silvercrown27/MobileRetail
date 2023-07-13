@@ -1,6 +1,5 @@
 package com.example.mobitail
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,14 +9,10 @@ import android.database.sqlite.SQLiteDatabase
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.Toast
+
 import com.example.mobitail.consumer.mainActivities.HomeActivity
-import com.example.mobitail.consumer.modalClasses.User
+import com.example.mobitail.retailer.mainActivities.RetailDashboardActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 
 
 class SplashActivity : AppCompatActivity() {
@@ -55,27 +50,10 @@ class SplashActivity : AppCompatActivity() {
                 val devicename = cursor.getString(deviceNameColumnIndex)
                 val deviceid = cursor.getString(deviceIdColumnIndex)
 
-                FirebaseUtils.isUserLoggedIn(email) { isLoggedIn ->
-                    if (isLoggedIn) {
-                        Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show()
-                        FirebaseUtils.isDeviceLoggedIn(devicename, deviceid, this@SplashActivity){ isLoggedIn ->
-                            if (isLoggedIn) {
-                                val intent = Intent(this@SplashActivity, HomeActivity::class.java)
-                                startActivity(intent)
+                Toast.makeText(this, "$email \n $devicename \n $deviceid", Toast.LENGTH_SHORT).show()
 
-                            } else {
-                                Toast.makeText(this, "Device unknown!\nplease sign in again", Toast.LENGTH_SHORT).show()
-                                FirebaseUtils.logoutUser()
-                                val intent = Intent(this@SplashActivity, SigninActivity::class.java)
-                                startActivity(intent)
-                            }
-                        }
-                    } else {
-                        Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SplashActivity, StartUpActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
+                checkDb(email, devicename, deviceid)
+                cursor.close()
             } else {
                 Toast.makeText(
                     this@SplashActivity,
@@ -84,6 +62,7 @@ class SplashActivity : AppCompatActivity() {
                 ).show()
                 val intent = Intent(this@SplashActivity, SigninActivity::class.java)
                 startActivity(intent)
+                cursor.close()
             }
         } else {
             Toast.makeText(
@@ -100,5 +79,32 @@ class SplashActivity : AppCompatActivity() {
 
     private fun getDb(): SQLiteDatabase {
         return SQLDatabaseManager.getDatabase(applicationContext)
+    }
+
+    private fun checkDb(email: String, devicename: String, deviceid: String){
+        FirebaseUtils.isUserLoggedIn("retailers") { isLoggedIn ->
+            if (isLoggedIn) {
+                Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this@SplashActivity, RetailDashboardActivity::class.java)
+                startActivity(intent)
+
+            } else {
+                FirebaseUtils.isUserLoggedIn("customers") { isLoggedIn ->
+                    if (isLoggedIn) {
+                        Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show()
+
+                        val intent = Intent(this@SplashActivity, HomeActivity::class.java)
+                        startActivity(intent)
+
+                    } else {
+                        Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show()
+
+                        val intent = Intent(this@SplashActivity, StartUpActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@
             android:background="@android:color/transparent" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/reviewer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="One Price"
@@ -34,7 +34,7 @@
         android:layout_marginTop="15dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/userImage"
+            android:id="@+id/reviewer_image"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginLeft="10dp"
@@ -45,6 +45,7 @@
             app:civ_border_width="0dp" />
 
         <TextView
+            android:id="@+id/product_review"
             android:layout_width="199dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"

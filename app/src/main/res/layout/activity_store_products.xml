@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".consumer.mainActivities.ProductDetails">
-
+    tools:context=".retailer.mainActivities.StoreProductsActivity">
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
         android:layout_height="70dp">
@@ -156,6 +155,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="25dp"
                     android:paddingHorizontal="15dp"
+                    android:text=""
                     android:maxLines="4"
                     android:ellipsize="marquee"
                     android:textSize="18dp"/>
@@ -174,28 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
-                android:paddingHorizontal="10dp" >
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerVertical="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/favorites"
-                    android:background="@android:color/transparent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/add_cart_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="Add to cart"
-                    android:textSize="16dp"
-                    android:backgroundTint="@color/black"
-                    app:cornerRadius="14dp"/>
-            </RelativeLayout>
+                android:paddingHorizontal="10dp" />
 
         </RelativeLayout>
     </LinearLayout>

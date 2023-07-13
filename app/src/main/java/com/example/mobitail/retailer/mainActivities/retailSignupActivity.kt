@@ -41,6 +41,7 @@ class retailSignupActivity : AppCompatActivity() {
     private lateinit var back_btn: ImageButton
     private lateinit var next_step: MaterialButton
     private lateinit var dbref: DatabaseReference
+    private lateinit var retdb: SQLiteDatabase
 
     @SuppressLint("HardwareIds")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -152,7 +153,6 @@ class retailSignupActivity : AppCompatActivity() {
 
     private fun addRecords(userId: String?, users: RetailTable) {
         val userdbref: DatabaseReference = FirebaseDatabase.getInstance().getReference("retailers")
-        val db = getDb()
 
         userdbref.child(userId.toString()).setValue(users)
             .addOnCompleteListener {
@@ -162,22 +162,7 @@ class retailSignupActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-
-                val firstName = users.firstname
-                val lastName =users.lastname
-                val userEmail = users.email
-                val deviceName = users.deviceName
-                val deviceId = users.deviceId
-                val contact = users.contact
-                val location = ""
-                val gender = users.gender
-
-                val insertQuery =
-                    "INSERT INTO users (firstname, lastname, email, devicename, deviceid, contact, location, gender) " +
-                    "VALUES ('$firstName', '$lastName', '$userEmail', '$deviceName', '$deviceId', '$contact', '$location', '$gender')"
-
-                db.execSQL(insertQuery)
-                db.close()
+                enterSQLData(users)
 
                 var intent = Intent(this, SignUpStep2::class.java)
                 intent.putExtra("userid", userId)
@@ -197,4 +182,33 @@ class retailSignupActivity : AppCompatActivity() {
     private fun getDb(): SQLiteDatabase {
         return SQLDatabaseManager.getDatabase(applicationContext)
     }
+
+    private fun enterSQLData(user: Any) {
+        val db = getDb()
+        val fields = when (user) {
+            is RetailTable -> listOf(
+                "firstname", "lastname", "email", "contact", "location", "gender"
+            )
+            is CustomerTable -> listOf(
+                "firstname", "lastname", "email", "contact", "location", "gender"
+            )
+            else -> throw IllegalArgumentException("Invalid data class type")
+        }
+
+        val deviceName = Build.MODEL
+        val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+
+        val fieldValues = fields.joinToString(", ") { field ->
+            val declaredField = user::class.java.getDeclaredField(field)
+            declaredField.isAccessible = true
+            val fieldValue = declaredField.get(user)
+            "'$fieldValue'"
+        }
+
+        val insertQuery = "INSERT OR REPLACE INTO users (devicename, deviceid, ${fields.joinToString(", ")}) " +
+                "VALUES ('$deviceName', '$deviceId', $fieldValues)"
+        db.execSQL(insertQuery)
+        db.close()
+    }
+
 }

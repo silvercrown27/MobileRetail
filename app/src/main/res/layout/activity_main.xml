@@ -35,10 +35,10 @@
         android:layout_marginBottom="142dp"
         android:fontFamily="sans-serif"
         android:padding="16dp"
-        android:text="Discover Amazing Offers on Your Goods in Just One Place"
+        android:text="Uncover Incredible Deals and Unbeatable Prices, All in One Shop!"
         android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:textSize="50sp"
+        android:textSize="35dp"
         android:textStyle="bold" />
 
     <com.google.android.material.button.MaterialButton

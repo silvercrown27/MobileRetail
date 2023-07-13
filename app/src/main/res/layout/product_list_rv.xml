@@ -15,11 +15,13 @@
         app:strokeWidth="0dp">
 
         <ImageView
+            android:id="@+id/prod_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/a"
             android:backgroundTint="@android:color/transparent" />
+
     </com.google.android.material.card.MaterialCardView>
 
     <RelativeLayout
@@ -34,6 +36,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/prodBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mountain Fresh Milk"
@@ -62,6 +65,7 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/products_sold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -84,6 +88,7 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/dateAdded"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
