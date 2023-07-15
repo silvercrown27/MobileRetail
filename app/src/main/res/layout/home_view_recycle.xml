@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="170dp"
-    android:layout_height="200dp"
+    android:layout_height="225dp"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent">
@@ -8,9 +8,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Category_items"
         android:layout_width="160dp"
-        android:layout_height="194dp"
+        android:layout_height="224dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="18dp"
         android:layout_margin="3dp"
         android:clickable="true"
         android:background="@android:color/transparent"
@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/Category_image"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:src="@drawable/b"
             android:scaleType="centerCrop"
             android:clickable="true">
@@ -36,9 +36,18 @@
             android:textStyle="bold"
             android:gravity="bottom"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="45dp">
 
         </TextView>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Add to Cart"
+            android:backgroundTint="@color/black"
+            android:layout_gravity="bottom"
+            app:cornerRadius="10dp" />
 
     </androidx.cardview.widget.CardView>
 

@@ -17,6 +17,12 @@ import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.HomeItemsAdapter
 import com.example.mobitail.consumer.adapterClasses.SliderAdapter
 import com.example.mobitail.consumer.modalClasses.SliderData
+import com.example.mobitail.databaseorganization.Products
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.smarteist.autoimageslider.SliderView
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -46,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this@HomeActivity, "User data is not available", Toast.LENGTH_SHORT).show()
             }
         }
+
         customSliderAdapter = SliderAdapter()
         slider.setSliderAdapter(customSliderAdapter)
         slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
@@ -55,11 +62,11 @@ class HomeActivity : AppCompatActivity() {
 
         homeItemsAdapter = HomeItemsAdapter()
         homeItemsAdapter.setOnItemClickListener(object : HomeItemsAdapter.OnItemClickListener {
-            override fun onItemClick(item: HomeItemsAdapter.HomeItemGroups) {
+            override fun onItemClick(item: Products) {
                 val intent = Intent(this@HomeActivity, ProductDetails::class.java)
-                intent.putExtra("item_label", item.courseName)
-                intent.putExtra("item_description", R.string.test_description)
-                intent.putExtra("item_image", item.courseImg)
+                intent.putExtra("item_label", "$item.prodName\n${item.prodBrand}")
+                intent.putExtra("item_description", item.prodDescription)
+                intent.putExtra("item_image", item.prodImage)
                 startActivity(intent)
             }
         })
@@ -123,29 +130,35 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun populateGroupList() {
-        val groupList = ArrayList<HomeItemsAdapter.HomeItemGroups>()
+        val groupList = ArrayList<Products>()
+        var currentUser = FirebaseAuth.getInstance().currentUser!!.uid
+        val prodDbRef = FirebaseDatabase.getInstance().getReference("products")
 
-        val item1 = HomeItemsAdapter.HomeItemGroups("Kales", R.drawable.b)
-        val item2 = HomeItemsAdapter.HomeItemGroups("Oranges", R.drawable.d)
-        val item3 = HomeItemsAdapter.HomeItemGroups("Mangoes", R.drawable.g)
-        val item4 = HomeItemsAdapter.HomeItemGroups("Milk", R.drawable.a)
-        val item5 = HomeItemsAdapter.HomeItemGroups("WaterMellon", R.drawable.f)
-        val item6 = HomeItemsAdapter.HomeItemGroups("Coconuts", R.drawable.e)
-        val item7 = HomeItemsAdapter.HomeItemGroups("Cabbages", R.drawable.d)
-        val item8 = HomeItemsAdapter.HomeItemGroups("Onions", R.drawable.g)
+        prodDbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                groupList.clear()
 
-        groupList.add(item1)
-        groupList.add(item2)
-        groupList.add(item3)
-        groupList.add(item4)
-        groupList.add(item5)
-        groupList.add(item6)
-        groupList.add(item7)
-        groupList.add(item8)
+                for (productSnapshot in snapshot.children) {
+                    val product = productSnapshot.getValue(Products::class.java)
+                    product?.let {
+                        groupList.add(it)
+                    }
 
-        homeItemsAdapter.setItemList(groupList)
+                }
+                homeItemsAdapter.setItemList(groupList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error if needed
+                Toast.makeText(
+                    this@HomeActivity,
+                    "An error occured while accessing the database",
+                    Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
+
 class SpacingItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)

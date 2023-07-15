@@ -45,7 +45,6 @@ class StoreProductsAdapter: RecyclerView.Adapter<StoreProductsAdapter.ViewHolder
         private val productSold: TextView = itemView.findViewById(R.id.products_sold)
         private val productBrand: TextView = itemView.findViewById(R.id.prodBrand)
         private val prodDateAdded: TextView = itemView.findViewById(R.id.dateAdded)
-//        private val productLikes: TextView = itemView.findViewById(R.id.prod_label)
 
         fun bind(item: Products) {
             val context: Context = itemView.context
@@ -57,8 +56,6 @@ class StoreProductsAdapter: RecyclerView.Adapter<StoreProductsAdapter.ViewHolder
             productBrand.text = item.prodBrand
             productSold.text = item.sold.toString()
             prodDateAdded.text = item.dateAdded
-//            productLikes.text = item.likes.toString()
-
 
             itemView.setOnClickListener {
                 itemClickListener?.onItemClick(item)

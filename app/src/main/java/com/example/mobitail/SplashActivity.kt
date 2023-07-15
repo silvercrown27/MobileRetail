@@ -91,11 +91,11 @@ class SplashActivity : AppCompatActivity() {
 
             } else {
                 FirebaseUtils.isUserLoggedIn("customers") { isLoggedIn ->
+                    val intent = Intent(this@SplashActivity, HomeActivity::class.java)
+                    startActivity(intent)
+
                     if (isLoggedIn) {
                         Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show()
-
-                        val intent = Intent(this@SplashActivity, HomeActivity::class.java)
-                        startActivity(intent)
 
                     } else {
                         Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show()

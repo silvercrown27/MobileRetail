@@ -76,7 +76,9 @@ class AddRemoveProduct : AppCompatActivity() {
 
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
+
                 val downloadUrl = task.result.toString()
+                val prodId = dbRef.push().key
 
                 val prods = Products(
                     prodImage = downloadUrl,
@@ -84,26 +86,28 @@ class AddRemoveProduct : AppCompatActivity() {
                     dateAdded = formattedDate
                 )
                 if (downloadUrl != null && currentUser != null) {
-                    dbRef.child(currentUser).setValue(prods)
-                        .addOnCompleteListener {
-                            Toast.makeText(
-                                this,
-                                "Product Added Successfully!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    if (prodId != null) {
+                        dbRef.child(prodId).setValue(prods)
+                            .addOnCompleteListener {
+                                Toast.makeText(
+                                    this,
+                                    "Product Added Successfully!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
-                            var intent = Intent(this, ProductsActivity::class.java)
-                            startActivity(intent)
+                                var intent = Intent(this, ProductsActivity::class.java)
+                                startActivity(intent)
 
-                            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+                                overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
 
-                        }.addOnFailureListener { err ->
-                            Toast.makeText(
-                                this,
-                                "Error ${err.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                            }.addOnFailureListener { err ->
+                                Toast.makeText(
+                                    this,
+                                    "Error ${err.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
                 }
 
             } else {

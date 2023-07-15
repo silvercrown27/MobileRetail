@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobitail.consumer.adapterClasses.HomeItemsAdapter
 import com.example.mobitail.consumer.mainActivities.SpacingItemDecoration
 import com.example.mobitail.R
+import com.example.mobitail.databaseorganization.Products
 import com.google.android.material.button.MaterialButton
 
 class FinalSignupstep : AppCompatActivity() {
@@ -35,25 +36,7 @@ class FinalSignupstep : AppCompatActivity() {
     }
 
     private fun populateGroupLists() {
-        val groupList = ArrayList<HomeItemsAdapter.HomeItemGroups>()
-
-        val item1 = HomeItemsAdapter.HomeItemGroups("Kales", R.drawable.b)
-        val item2 = HomeItemsAdapter.HomeItemGroups("Oranges", R.drawable.d)
-        val item3 = HomeItemsAdapter.HomeItemGroups("Mangoes", R.drawable.g)
-        val item4 = HomeItemsAdapter.HomeItemGroups("Milk", R.drawable.a)
-        val item5 = HomeItemsAdapter.HomeItemGroups("WaterMellon", R.drawable.f)
-        val item6 = HomeItemsAdapter.HomeItemGroups("Coconuts", R.drawable.e)
-        val item7 = HomeItemsAdapter.HomeItemGroups("Cabbages", R.drawable.d)
-        val item8 = HomeItemsAdapter.HomeItemGroups("Onions", R.drawable.g)
-
-        groupList.add(item1)
-        groupList.add(item2)
-        groupList.add(item3)
-        groupList.add(item4)
-        groupList.add(item5)
-        groupList.add(item6)
-        groupList.add(item7)
-        groupList.add(item8)
+        val groupList = ArrayList<Products>()
 
         ItemsAdapter.setItemList(groupList)
     }

@@ -9,13 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mobitail.R
+import com.example.mobitail.databaseorganization.Products
 import com.google.android.material.card.MaterialCardView
 
 class HomeItemsAdapter : RecyclerView.Adapter<HomeItemsAdapter.ViewHolder>() {
-    private val groupList: ArrayList<HomeItemGroups> = ArrayList()
+    private val groupList: ArrayList<Products> = ArrayList()
     private var itemClickListener: OnItemClickListener? = null
 
-    fun setItemList(items: ArrayList<HomeItemGroups>) {
+    fun setItemList(items: ArrayList<Products>) {
         groupList.clear()
         groupList.addAll(items)
         notifyDataSetChanged()
@@ -54,20 +55,18 @@ class HomeItemsAdapter : RecyclerView.Adapter<HomeItemsAdapter.ViewHolder>() {
             }
         }
 
-        fun bind(item: HomeItemGroups) {
+        fun bind(item: Products) {
             val context: Context = itemView.context
 
             Glide.with(context)
-                .load(item.courseImg)
+                .load(item.prodImage)
                 .into(imageView)
 
-            textView.text = item.courseName
+            textView.text = item.prodBrand
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(item: HomeItemGroups)
+        fun onItemClick(item: Products)
     }
-
-    data class HomeItemGroups(val courseName: String, val courseImg: Int)
 }
