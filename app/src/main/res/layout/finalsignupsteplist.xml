@@ -6,7 +6,7 @@
     android:layout_margin="8dp" >
 
     <TextView
-        android:id="@+id/idTVCourseDescription"
+        android:id="@+id/category_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Item Label"

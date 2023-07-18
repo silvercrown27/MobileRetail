@@ -16,9 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.HomeItemsAdapter
 import com.example.mobitail.consumer.adapterClasses.SliderAdapter
-import com.example.mobitail.consumer.modalClasses.SliderData
 import com.example.mobitail.databaseorganization.Products
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -116,22 +114,36 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun populatesliderList() {
-        val sliderList = ArrayList<SliderData>()
+        val sliderList = ArrayList<Products>()
 
-        val item1 = SliderData(R.drawable.a)
-        val item2 = SliderData(R.drawable.b)
-        val item3 = SliderData(R.drawable.c)
+        val prodDbRef = FirebaseDatabase.getInstance().getReference("products")
 
-        sliderList.add(item1)
-        sliderList.add(item2)
-        sliderList.add(item3)
+        prodDbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                sliderList.clear()
 
-        customSliderAdapter.setItemList(sliderList)
+                for (productSnapshot in snapshot.children) {
+                    val product = productSnapshot.getValue(Products::class.java)
+                    product?.let {
+                        sliderList.add(it)
+                    }
+
+                }
+                customSliderAdapter.setItemList(sliderList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error if needed
+                Toast.makeText(
+                    this@HomeActivity,
+                    "An error occured while accessing the database",
+                    Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun populateGroupList() {
         val groupList = ArrayList<Products>()
-        var currentUser = FirebaseAuth.getInstance().currentUser!!.uid
         val prodDbRef = FirebaseDatabase.getInstance().getReference("products")
 
         prodDbRef.addValueEventListener(object : ValueEventListener {

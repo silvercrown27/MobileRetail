@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 
@@ -26,6 +27,7 @@ class AddRemoveProduct : AppCompatActivity() {
     private lateinit var imagePreview: ImageView
     private lateinit var addProd: MaterialButton
     private lateinit var selectProdImg: MaterialButton
+    private lateinit var prodLabel: EditText
     private lateinit var imageUri: Uri
     private lateinit var storageRef: StorageReference
     private lateinit var dbRef: DatabaseReference
@@ -38,7 +40,7 @@ class AddRemoveProduct : AppCompatActivity() {
         selectProdImg = findViewById(R.id.selectImageBtn)
         addProd = findViewById(R.id.uploadProduct)
         imagePreview = findViewById(R.id.imagePreview)
-
+        prodLabel = findViewById(R.id.prod_name)
         storageRef = FirebaseStorage.getInstance().getReference("products")
         dbRef = FirebaseDatabase.getInstance().getReference("products")
 
@@ -62,57 +64,62 @@ class AddRemoveProduct : AppCompatActivity() {
         val imageLabel = "$currentUser/${System.currentTimeMillis()}_${imageUri.lastPathSegment}"
         val imageRef = storageRef.child(imageLabel)
         val uploadTask = imageRef.putFile(imageUri)
+        val name = prodLabel.text.toString()
 
 
         val currentDate = Date()
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
         val formattedDate = dateFormat.format(currentDate)
 
-        uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let { throw it }
-            }
-            imageRef.downloadUrl
-
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-
-                val downloadUrl = task.result.toString()
-                val prodId = dbRef.push().key
-
-                val prods = Products(
-                    prodImage = downloadUrl,
-                    userid = currentUser,
-                    dateAdded = formattedDate
-                )
-                if (downloadUrl != null && currentUser != null) {
-                    if (prodId != null) {
-                        dbRef.child(prodId).setValue(prods)
-                            .addOnCompleteListener {
-                                Toast.makeText(
-                                    this,
-                                    "Product Added Successfully!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
-                                var intent = Intent(this, ProductsActivity::class.java)
-                                startActivity(intent)
-
-                                overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
-
-                            }.addOnFailureListener { err ->
-                                Toast.makeText(
-                                    this,
-                                    "Error ${err.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                    }
+        if (name != null){
+            uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let { throw it }
                 }
+                imageRef.downloadUrl
 
-            } else {
-                Toast.makeText(this, "Error uploading image", Toast.LENGTH_SHORT).show()
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    val downloadUrl = task.result.toString()
+                    val prodId = dbRef.push().key
+
+                    val prods = Products(
+                        prodName = name,
+                        prodImage = downloadUrl,
+                        userid = currentUser,
+                        dateAdded = formattedDate
+                    )
+                    if (downloadUrl != null && currentUser != null) {
+                        if (prodId != null) {
+                            dbRef.child(prodId).setValue(prods)
+                                .addOnCompleteListener {
+                                    Toast.makeText(
+                                        this,
+                                        "Product Added Successfully!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    var intent = Intent(this, ProductsActivity::class.java)
+                                    startActivity(intent)
+
+                                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+
+                                }.addOnFailureListener { err ->
+                                    Toast.makeText(
+                                        this,
+                                        "Error ${err.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                        }
+                    }
+
+                } else {
+                    Toast.makeText(this, "Error uploading image", Toast.LENGTH_SHORT).show()
+                }
             }
+            prodLabel.text.clear()
         }
     }
 

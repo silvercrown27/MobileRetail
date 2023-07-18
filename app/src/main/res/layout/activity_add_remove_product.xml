@@ -47,6 +47,13 @@
         android:backgroundTint="@color/dark_bue"
         app:cornerRadius="15dp"/>
 
+    <EditText
+        android:id="@+id/prod_name"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/uploadProduct"
         android:layout_width="wrap_content"

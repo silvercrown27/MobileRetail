@@ -21,10 +21,11 @@
             android:id="@+id/signuplabel"
             android:layout_width="314dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="Create Your Virtual Store"
             android:textColor="@color/black"
             android:textAlignment="center"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textStyle="bold" />
 
 
@@ -47,7 +48,7 @@
             <TextView
                 android:layout_width="314dp"
                 android:layout_height="wrap_content"
-                android:text="Step 2"
+                android:text="Enter Store Details"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -60,7 +61,7 @@
                 android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/StoreName"
+                    android:id="@+id/storeName"
                     android:layout_width="328dp"
                     android:layout_height="64dp"
                     android:ems="10"
@@ -71,48 +72,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="328dp"
-                android:layout_height="64dp" />
-
-            <Spinner
-                android:id="@+id/countrySpinner"
-                android:layout_width="328dp"
-                android:layout_height="64dp" />
-
-            <Spinner
-                android:id="@+id/countySpinner"
-                android:layout_width="328dp"
-                android:layout_height="64dp" />
-
-            <com.hbb20.CountryCodePicker
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:ccp_areaCodeDetectedCountry="true"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/contrycodePicker"
-                app:ccp_autoDetectCountry="true" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/TextInputLayout.BlackBorder"
-                android:layout_marginTop="30dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/LastName"
-                    android:layout_width="328dp"
-                    android:layout_height="64dp"
-                    android:ems="10"
-                    android:hint="Enter Last Name"
-                    android:inputType="text"
-                    android:textColorHint="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 android:layout_width="wrap_content"
@@ -121,12 +80,63 @@
                 android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/UserEmail"
+                    android:id="@+id/storeEmail"
                     android:layout_width="328dp"
                     android:layout_height="64dp"
                     android:ems="10"
                     android:hint="Enter Email Address"
                     android:inputType="textEmailAddress"
+                    android:textColorHint="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/country_code_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    app:ccp_areaCodeDetectedCountry="true"
+                    app:ccp_autoDetectCountry="true" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textviewlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayout.BlackBorder" >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/storeNumber"
+                        android:layout_width="228dp"
+                        android:layout_height="54dp"
+                        android:ems="10"
+                        android:hint="Enter Phone Number"
+                        android:textColor="@color/black"
+                        android:inputType="number"
+                        android:textColorHint="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                style="@style/TextInputLayout.BlackBorder">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/storeLocation"
+                    android:layout_width="328dp"
+                    android:layout_height="64dp"
+                    android:ems="10"
+                    android:hint="Enter Store Location"
+                    android:inputType="text"
                     android:textColorHint="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -139,7 +149,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:text="Next"
-                app:backgroundTint="@color/black"
+                app:backgroundTint="@color/blue"
                 app:cornerRadius="10dp" />
 
         </LinearLayout>

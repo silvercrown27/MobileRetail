@@ -43,7 +43,7 @@
             android:name=".retailer.mainActivities.RetailDashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".retailer.mainActivities.FinalSignupstep"
+            android:name=".retailer.mainActivities.FinalSignupStep"
             android:exported="false" />
         <activity
             android:name=".retailer.mainActivities.SignUpStep2"

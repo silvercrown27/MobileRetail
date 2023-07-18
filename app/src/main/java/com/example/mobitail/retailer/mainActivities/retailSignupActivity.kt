@@ -116,6 +116,7 @@ class retailSignupActivity : AppCompatActivity() {
                 )
 
                 createUser(user.email, password, user)
+
             } else {
                 Toast.makeText(this, "Encountered an error during sign up\nPlease try again after sometime", Toast.LENGTH_SHORT).show()
             }

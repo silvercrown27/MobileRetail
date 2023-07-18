@@ -8,12 +8,13 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.mobitail.R
 import com.example.mobitail.consumer.modalClasses.SliderData
+import com.example.mobitail.databaseorganization.Products
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 class SliderAdapter : SliderViewAdapter<SliderAdapter.ViewHolder>() {
-    private val mSliderItems = ArrayList<SliderData>()
+    private val mSliderItems = ArrayList<Products>()
 
-    fun setItemList(items: ArrayList<SliderData>){
+    fun setItemList(items: ArrayList<Products>){
         mSliderItems.clear()
         mSliderItems.addAll(items)
         notifyDataSetChanged()
@@ -37,10 +38,10 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : SliderViewAdapter.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.myimage)
 
-        fun bind(item: SliderData) {
+        fun bind(item: Products) {
             val context: Context = itemView.context
 
-            Glide.with(context).load(item.ImageResId).into(imageView)
+            Glide.with(context).load(item.prodImage).into(imageView)
         }
     }
 }

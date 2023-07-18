@@ -2,105 +2,117 @@ package com.example.mobitail.retailer.mainActivities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobitail.R
+import com.example.mobitail.databaseorganization.Stores
 import com.google.android.material.button.MaterialButton
-import org.json.JSONArray
-import org.json.JSONException
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.hbb20.CountryCodePicker
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class SignUpStep2 : AppCompatActivity() {
-    private lateinit var countrySpinner: Spinner
-    private lateinit var countySpinner: Spinner
+    private lateinit var storeName: TextInputEditText
+    private lateinit var storeEmail: TextInputEditText
+    private lateinit var storeNumber: TextInputEditText
+    private lateinit var storeLocation: TextInputEditText
+    private lateinit var numberPicker: CountryCodePicker
+    private lateinit var storedb: DatabaseReference
     private lateinit var next_btn: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_step2)
 
+        storedb = FirebaseDatabase.getInstance().getReference("stores")
+
+        storeName = findViewById(R.id.storeName)
+        storeEmail = findViewById(R.id.storeEmail)
+        storeNumber = findViewById(R.id.storeNumber)
+        storeLocation = findViewById(R.id.storeLocation)
+        numberPicker = findViewById(R.id.country_code_picker)
         next_btn = findViewById(R.id.NextStep)
-        countrySpinner = findViewById(R.id.countrySpinner)
-        countySpinner = findViewById(R.id.countySpinner)
 
-        // Populate the country Spinner
-        countySpinner = findViewById(R.id.countySpinner)
+        next_btn.setOnClickListener {
+            val fields = listOf(storeName, storeEmail, storeNumber, storeLocation)
+            val fieldNames = listOf("name", "email", "number", "location")
+            var hasError = false
 
-        // Read country data from JSON file and update spinner
-        readCountryDataFromJson()
+            for (i in fields.indices) {
+                val field = fields[i]
+                val fieldName = fieldNames[i]
+                val fieldValue = field.text.toString().trim()
 
-        val spinner: Spinner = findViewById(R.id.spinner)
-        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(this, R.array.options_array, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Log.d("Selected Item", selectedItem)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
-            }
-        }
-
-        next_btn.setOnClickListener{
-            var intent = Intent(this, FinalSignupstep::class.java)
-            startActivity(intent)
-        }
-    }
-    private fun readCountryDataFromJson() {
-        val json: String = applicationContext.assets.open("states.json").bufferedReader().use { it.readText() }
-
-        try {
-            val jsonArray = JSONArray(json)
-            for (i in 0 until jsonArray.length()) {
-                val countryObject = jsonArray.getJSONObject(i)
-                val countryName = countryObject.getJSONObject("name").getString("common")
-
-                // Retrieve the counties for Jordan
-                if (countryName == "Jordan") {
-                    if (countryObject.has("states")) {
-                        val stateArray = countryObject.getJSONArray("states")
-                        val countyList = mutableListOf<String>()
-
-                        for (j in 0 until stateArray.length()) {
-                            val stateObject = stateArray.getJSONObject(j)
-                            val stateName = stateObject.getString("name")
-
-                            if (stateObject.has("counties")) {
-                                val countyArray = stateObject.getJSONArray("counties")
-                                for (k in 0 until countyArray.length()) {
-                                    val countyName = countyArray.getString(k)
-                                    val countyWithState = "$countyName, $stateName"
-                                    countyList.add(countyWithState)
-                                }
-                            }
-                        }
-
-                        // Update the spinner with the county list
-                        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countyList)
-                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        countySpinner.adapter = spinnerAdapter
-                    } else {
-                        // Handle the case when the "states" key is missing
-                        // Show an error message or take appropriate action
-                    }
+                if (fieldValue.isEmpty()) {
+                    Toast.makeText(this, "Please Enter All Your Details", Toast.LENGTH_SHORT).show()
+                    field.error = "Please fill in the $fieldName field!"
+                    field.requestFocus()
+                    hasError = true
                 }
             }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-            // Handle the JSON parsing error
+
+            if (!hasError) {
+                val store_name = fields[0].text.toString().trim()
+                val store_email = fields[1].text.toString().trim()
+                val store_num = fields[2].text.toString().trim()
+                val store_loc = fields[3].text.toString().trim()
+
+                val currentDate = Date()
+                val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                val dateString = dateFormat.format(currentDate)
+                val timeString = timeFormat.format(currentDate)
+                val dateTimeString = "$dateString - $timeString"
+
+                val store = Stores(
+                    storename = store_name,
+                    storeemail = store_email,
+                    storenumber = store_num,
+                    storelocation = store_loc,
+                    userid = intent.getStringExtra("user")!!,
+                    doc = dateTimeString
+                )
+                addRecords(store)
+
+            }
         }
+
+//        back.setOnClickListener {
+//            var intent = Intent(this, StartUpActivity::class.java)
+//            startActivity(intent)
+//
+//            overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+//    }
+    }
+
+    private fun addRecords(store: Stores) {
+        val storeid = storedb.push().key!!
+
+        storedb.child(storeid).setValue(store)
+            .addOnCompleteListener {
+                Toast.makeText(
+                    this,
+                    "Store Registered Successfully!",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                var intent = Intent(this, FinalSignupStep::class.java)
+                intent.putExtra("storeid", storeid)
+                startActivity(intent)
+
+                overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+
+            }.addOnFailureListener { err ->
+                Toast.makeText(
+                    this,
+                    "Error ${err.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 }
