@@ -63,7 +63,8 @@
             app:strokeWidth="1dp" />
 
     </LinearLayout>
-    <ScrollView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
@@ -146,13 +147,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/product_list_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingHorizontal="17dp"
                 android:backgroundTint="@android:color/transparent"
                 tools:listitem="@layout/product_list_rv"/>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

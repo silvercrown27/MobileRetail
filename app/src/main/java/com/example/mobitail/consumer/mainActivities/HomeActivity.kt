@@ -2,11 +2,13 @@ package com.example.mobitail.consumer.mainActivities
 
 import android.content.Intent
 import android.graphics.Rect
+import android.icu.lang.UCharacter.VerticalOrientation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -14,6 +16,7 @@ import com.example.mobitail.FirebaseUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import com.example.mobitail.R
+import com.example.mobitail.consumer.adapterClasses.FeaturedProductsAdapter
 import com.example.mobitail.consumer.adapterClasses.HomeItemsAdapter
 import com.example.mobitail.consumer.adapterClasses.SliderAdapter
 import com.example.mobitail.databaseorganization.Products
@@ -22,15 +25,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.smarteist.autoimageslider.SliderView
+import com.smarteist.autoimageslider.Transformations.VerticalFlipTransformation
 import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var profileImg: CircleImageView
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var featuredproductAd: FeaturedProductsAdapter
+    private lateinit var homeItemsAdapter: HomeItemsAdapter
     private lateinit var customSliderAdapter: SliderAdapter
+    private lateinit var featuredProductsRV: RecyclerView
+    private lateinit var profileImg: CircleImageView
     private lateinit var groupsRV: RecyclerView
     private lateinit var slider: SliderView
-    private lateinit var homeItemsAdapter: HomeItemsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +44,8 @@ class HomeActivity : AppCompatActivity() {
 
         slider = findViewById(R.id.slider)
         profileImg = findViewById(R.id.Profile_picture)
+        featuredProductsRV = findViewById(R.id.featured_products)
+        groupsRV = findViewById(R.id.home_items)
 
         FirebaseUtils.prepareData(this@HomeActivity) { user ->
             if (user != null) {
@@ -54,26 +62,37 @@ class HomeActivity : AppCompatActivity() {
         customSliderAdapter = SliderAdapter()
         slider.setSliderAdapter(customSliderAdapter)
         slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
-        slider.setScrollTimeInSec(3);
+        slider.setScrollTimeInSec(6);
         slider.setAutoCycle(true);
         slider.startAutoCycle();
 
-        homeItemsAdapter = HomeItemsAdapter()
-        homeItemsAdapter.setOnItemClickListener(object : HomeItemsAdapter.OnItemClickListener {
+
+        featuredproductAd = FeaturedProductsAdapter(this)
+        featuredproductAd.setOnItemClickListener(object : FeaturedProductsAdapter.OnItemClickListener {
             override fun onItemClick(item: Products) {
                 val intent = Intent(this@HomeActivity, ProductDetails::class.java)
-                intent.putExtra("item_label", "$item.prodName\n${item.prodBrand}")
+                intent.putExtra("item_label", "${item.prodName}\n${item.prodBrand}")
                 intent.putExtra("item_description", item.prodDescription)
                 intent.putExtra("item_image", item.prodImage)
                 startActivity(intent)
             }
         })
+        featuredProductsRV.adapter = featuredproductAd
+        featuredProductsRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        groupsRV = findViewById(R.id.home_items)
+
+        homeItemsAdapter = HomeItemsAdapter(this)
+        homeItemsAdapter.setOnItemClickListener(object : HomeItemsAdapter.OnItemClickListener {
+            override fun onItemClick(item: Products) {
+                val intent = Intent(this@HomeActivity, ProductDetails::class.java)
+                intent.putExtra("item_label", "${item.prodName}\n${item.prodBrand}")
+                intent.putExtra("item_description", item.prodDescription)
+                intent.putExtra("item_image", item.prodImage)
+                startActivity(intent)
+            }
+        })
         groupsRV.adapter = homeItemsAdapter
         groupsRV.layoutManager = GridLayoutManager(this, 2)
-        groupsRV.addItemDecoration(SpacingItemDecoration(10))
-
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.action_home
@@ -111,24 +130,31 @@ class HomeActivity : AppCompatActivity() {
         }
         populateGroupList()
         populatesliderList()
+        populateFeaturedList()
     }
 
     private fun populatesliderList() {
         val sliderList = ArrayList<Products>()
-
         val prodDbRef = FirebaseDatabase.getInstance().getReference("products")
 
         prodDbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 sliderList.clear()
 
+                var count = 0
+
                 for (productSnapshot in snapshot.children) {
+                    if (count >= 3) {
+                        break
+                    }
+
                     val product = productSnapshot.getValue(Products::class.java)
                     product?.let {
                         sliderList.add(it)
+                        count++
                     }
-
                 }
+
                 customSliderAdapter.setItemList(sliderList)
             }
 
@@ -136,8 +162,9 @@ class HomeActivity : AppCompatActivity() {
                 // Handle error if needed
                 Toast.makeText(
                     this@HomeActivity,
-                    "An error occured while accessing the database",
-                    Toast.LENGTH_SHORT).show()
+                    "An error occurred while accessing the database",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
@@ -166,6 +193,41 @@ class HomeActivity : AppCompatActivity() {
                     this@HomeActivity,
                     "An error occured while accessing the database",
                     Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun populateFeaturedList() {
+        val groupList = ArrayList<Products>()
+        val prodDbRef = FirebaseDatabase.getInstance().getReference("products")
+
+        prodDbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                groupList.clear()
+
+                var count = 0 // Counter to keep track of the number of items added
+                for (productSnapshot in snapshot.children) {
+                    if (count >= 5) {
+                        break // Exit the loop once 5 items are added
+                    }
+
+                    val product = productSnapshot.getValue(Products::class.java)
+                    product?.let {
+                        groupList.add(it)
+                        count++
+                    }
+                }
+
+                featuredproductAd.setItemList(groupList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error if needed
+                Toast.makeText(
+                    this@HomeActivity,
+                    "An error occurred while accessing the database",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }

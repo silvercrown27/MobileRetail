@@ -11,7 +11,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.mobitail.FirebaseUtils
 import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.CartAdapter
+import com.example.mobitail.databaseorganization.CartItems
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import de.hdodenhof.circleimageview.CircleImageView
 
 class CartActivity : AppCompatActivity() {
@@ -95,67 +101,62 @@ class CartActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun populateCartItems() {
-        val items = ArrayList<CartAdapter.CartItems>()
+        val cart = ArrayList<CartItems>()
+        val cartitemsDbRef = FirebaseDatabase.getInstance().getReference("cartitems")
 
-        val item1 = CartAdapter.CartItems(
-            R.drawable.d,
-            "Item 1",
-            "Description for Item 1",
-            "Ksh.",
-            "100.00"
-        )
-        val item2 = CartAdapter.CartItems(
-            R.drawable.e,
-            "Item 2",
-            "Description for Item 2",
-            "Ksh.",
-            "150.00"
-        )
-        val item3 = CartAdapter.CartItems(
-            R.drawable.f,
-            "Item 3",
-            "Description for Item 3",
-            "Ksh.",
-            "200.00"
-        )
-        val item4 = CartAdapter.CartItems(
-            R.drawable.a,
-            "Item 4",
-            "Description for Item 4",
-            "Ksh.",
-            "120.00"
-        )
-        val item5 = CartAdapter.CartItems(
-            R.drawable.b,
-            "Item 5",
-            "Description for Item 5",
-            "Ksh.",
-            "180.00"
-        )
-        val item6 = CartAdapter.CartItems(
-            R.drawable.a,
-            "Item 6",
-            "Description for Item 6",
-            "Ksh.",
-            "90.00"
-        )
-        val item7 = CartAdapter.CartItems(
-            R.drawable.g,
-            "Item 7",
-            "Description for Item 7",
-            "Ksh.",
-            "220.00"
-        )
+        cartitemsDbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                cart.clear()
 
-        items.add(item1)
-        items.add(item2)
-        items.add(item3)
-        items.add(item4)
-        items.add(item5)
-        items.add(item6)
-        items.add(item7)
+                for (productSnapshot in snapshot.children) {
+                    val product = productSnapshot.getValue(CartItems::class.java)
 
-        cartItems_Adapter.setItemList(items)
+                    getCart(FirebaseAuth.getInstance().currentUser!!.uid) { cartId ->
+                        if (cartId != null && product!!.cartId == cartId) {
+                            cartItems_Adapter.setItemList(cart)
+                        } else {
+                            showToast("Your Cart is empty")
+                        }
+                    }
+                    product?.let {
+                        cart.add(it)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                showToast("An error occured while accessing the database")
+            }
+        })
+    }
+
+    private fun getCart(userid: String, cartIdCallback: (String?) -> Unit) {
+        val cartdb = FirebaseDatabase.getInstance().getReference("carts")
+
+        cartdb.orderByChild("userid").equalTo(userid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (cartSnapshot in dataSnapshot.children) {
+                        val cartid = cartSnapshot.key
+                        if (cartid != null) {
+                            cartIdCallback(cartid)
+                            return
+                        }
+                    }
+                    showToast("Your Cart is empty")
+                    cartIdCallback(null)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    showToast("Failed to retrieve cart data: ${databaseError.message}")
+                    cartIdCallback(null)
+                }
+            })
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

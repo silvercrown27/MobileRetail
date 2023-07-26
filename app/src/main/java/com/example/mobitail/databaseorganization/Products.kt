@@ -8,12 +8,12 @@ data class Products(
     val prodImage: String? = "",
     val prodBrand: String? = "",
     val prodDescription: String? = "",
-    val prodPrice: Double? = null,
-    val quantity: Int? = null,
-    val sold: Int? = null,
-    val storeId: String? = "",
+    val prodPrice: Double? = 0.00,
+    val quantity: Int? = 1,
+    val sold: Int? = 0,
+    var storeId: String? = "",
     val userid: String = "",
-    val likes: Int? = null,
-    val reviews: Int? = null,
+    val likes: Int? = 0,
+    val reviews: Int? = 0,
     val dateAdded: String? = ""
 ): Serializable

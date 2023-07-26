@@ -1,5 +1,6 @@
 package com.example.mobitail
 
+import android.app.NotificationManager
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -29,11 +30,10 @@ class SplashActivity : AppCompatActivity() {
 
         val splashImage = findViewById<ImageView>(R.id.splash_image)
 
-        splashImage.startAnimation(fadeIn)
+        getSystemService(NotificationManager::class.java)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            splashImage.startAnimation(fadeOut)
-        }, 1000)
+
+        splashImage.startAnimation(fadeIn)
 
         val db = getDb()
 
@@ -50,14 +50,12 @@ class SplashActivity : AppCompatActivity() {
                 val devicename = cursor.getString(deviceNameColumnIndex)
                 val deviceid = cursor.getString(deviceIdColumnIndex)
 
-                Toast.makeText(this, "$email \n $devicename \n $deviceid", Toast.LENGTH_SHORT).show()
-
                 checkDb(email, devicename, deviceid)
                 cursor.close()
             } else {
                 Toast.makeText(
                     this@SplashActivity,
-                    "Column not found in the database",
+                    "Logged Out",
                     Toast.LENGTH_SHORT
                 ).show()
                 val intent = Intent(this@SplashActivity, SigninActivity::class.java)
@@ -67,7 +65,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             Toast.makeText(
                 this@SplashActivity,
-                "No data found in the database",
+                "Logged Out",
                 Toast.LENGTH_SHORT
             ).show()
             val intent = Intent(this@SplashActivity, MainActivity::class.java)
@@ -84,8 +82,6 @@ class SplashActivity : AppCompatActivity() {
     private fun checkDb(email: String, devicename: String, deviceid: String){
         FirebaseUtils.isUserLoggedIn("retailers") { isLoggedIn ->
             if (isLoggedIn) {
-                Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show()
-
                 val intent = Intent(this@SplashActivity, RetailDashboardActivity::class.java)
                 startActivity(intent)
 
@@ -106,5 +102,6 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         }
+        overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
     }
 }

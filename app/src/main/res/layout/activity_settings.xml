@@ -12,8 +12,8 @@
         android:layout_height="70dp">
         <ImageButton
             android:id="@+id/Back_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
@@ -22,12 +22,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:text="Settings"
-            android:textSize="35dp"
+            android:textSize="30dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="30dp"/>
     </com.google.android.material.appbar.MaterialToolbar>
 
     <ScrollView
@@ -67,22 +67,63 @@
                     android:background="@drawable/rounded_border">
 
                     <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/user1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="47dp"
+                        android:text="Account"
+                        android:textSize="22sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/baseline_arrow_forward_24" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/light_blue" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="7dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_border">
+
+                    <ImageView
                         android:id="@+id/Location_btn_leftIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/wallets" />
+                        android:src="@drawable/location" />
 
                     <TextView
                         android:id="@+id/Location_btn_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Location"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/Location_label"
@@ -132,53 +173,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="Language"
-                        android:textSize="24sp" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_arrow_forward_24" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@android:color/transparent"
-                        android:textColor="@color/light_blue" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="7dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/rounded_border">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/wallets" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Appearance"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"
@@ -227,16 +224,15 @@
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/wallets" />
+                        android:src="@drawable/notification" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Push all"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
@@ -260,16 +256,15 @@
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/wallets" />
+                        android:src="@drawable/chat" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="Messages"
-                        android:textSize="24sp" />
+                        android:layout_marginStart="47dp"
+                        android:textSize="22sp"
+                        android:text="Messages" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
@@ -282,7 +277,6 @@
                     android:layout_height="60dp"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="7dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginVertical="10dp"
                     android:layout_gravity="center"
@@ -293,16 +287,15 @@
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/wallets" />
+                        android:src="@drawable/cart" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Offers"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
@@ -347,10 +340,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Password and Security"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"
@@ -390,10 +382,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Privacy"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"
@@ -433,10 +424,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Subscriptions"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"

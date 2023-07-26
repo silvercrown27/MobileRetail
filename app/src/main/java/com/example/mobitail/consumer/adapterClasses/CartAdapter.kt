@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.mobitail.R
+import com.example.mobitail.databaseorganization.CartItems
 
 class CartAdapter : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     private val GroupList: ArrayList<CartItems> = ArrayList()
@@ -36,29 +38,20 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.item_image)
         private val item_label: TextView = itemView.findViewById(R.id.item_label)
-        private val item_desc: TextView = itemView.findViewById(R.id.item_description)
         private val item_currency: TextView = itemView.findViewById(R.id.currency)
-        private val item_procs: TextView = itemView.findViewById(R.id.item_price)
+        private val item_price: TextView = itemView.findViewById(R.id.item_price)
 
         fun bind(item: CartItems) {
             val context: Context = itemView.context
 
             Glide.with(context)
-                .load(item.item_image)
+                .load(item.prodImg)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView)
 
-            item_label.text = item.item_name
-            item_desc.text = item.item_desc
-            item_currency.text = item.item_currency
-            item_procs.text = item.item_price
+            item_label.text = item.prodName
+            item_currency.text = "Ksh."
+            item_price.text = item.prodPrice.toString()
         }
     }
-
-    data class CartItems(
-        val item_image: Int,
-        val item_name: String,
-        val item_desc: String,
-        val item_currency: String,
-        val item_price: String
-    )
 }

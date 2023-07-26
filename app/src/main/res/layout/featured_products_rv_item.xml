@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_properties"
-    android:layout_width="match_parent"
-    android:layout_height="205dp"
+    android:layout_width="150dp"
+    android:layout_height="215dp"
     android:layout_margin="8dp"
     android:layout_gravity="center"
     android:backgroundTint="@color/white"
@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/groupImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:layout_gravity="top"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
@@ -106,8 +106,6 @@
                     android:src="@drawable/baseline_add_24" />
 
             </com.google.android.material.card.MaterialCardView>
-
-
 
         </RelativeLayout>
     </RelativeLayout>

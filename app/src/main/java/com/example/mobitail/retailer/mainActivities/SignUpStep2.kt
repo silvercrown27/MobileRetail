@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import com.example.mobitail.R
 import com.example.mobitail.databaseorganization.Stores
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.hbb20.CountryCodePicker
+
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -28,7 +31,7 @@ class SignUpStep2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_step2)
-
+        var countryCode: String = "+254"
         storedb = FirebaseDatabase.getInstance().getReference("stores")
 
         storeName = findViewById(R.id.storeName)
@@ -37,6 +40,10 @@ class SignUpStep2 : AppCompatActivity() {
         storeLocation = findViewById(R.id.storeLocation)
         numberPicker = findViewById(R.id.country_code_picker)
         next_btn = findViewById(R.id.NextStep)
+
+        numberPicker.setOnCountryChangeListener {
+            countryCode = numberPicker.selectedCountryCodeWithPlus
+        }
 
         next_btn.setOnClickListener {
             val fields = listOf(storeName, storeEmail, storeNumber, storeLocation)
@@ -59,8 +66,9 @@ class SignUpStep2 : AppCompatActivity() {
             if (!hasError) {
                 val store_name = fields[0].text.toString().trim()
                 val store_email = fields[1].text.toString().trim()
-                val store_num = fields[2].text.toString().trim()
+                val store_num = countryCode + " " + fields[2].text.toString().trim()
                 val store_loc = fields[3].text.toString().trim()
+                val userid = FirebaseAuth.getInstance().currentUser!!.uid
 
                 val currentDate = Date()
                 val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
@@ -74,7 +82,7 @@ class SignUpStep2 : AppCompatActivity() {
                     storeemail = store_email,
                     storenumber = store_num,
                     storelocation = store_loc,
-                    userid = intent.getStringExtra("user")!!,
+                    userid = userid,
                     doc = dateTimeString
                 )
                 addRecords(store)

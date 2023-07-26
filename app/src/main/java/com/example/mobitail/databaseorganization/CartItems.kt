@@ -1,10 +1,11 @@
 package com.example.mobitail.databaseorganization
 
 data class CartItems(
-    val itemid: Int,
-    val prodid: Int,
-    val prodprice: Double,
-    val quantity: Int,
-    val totalcost: Double,
-    val userid: Int
+    val prodName: String? = "",
+    val prodPrice: Double = 0.00,
+    val prodImg: String? = "",
+    val quantity: Int = 1,
+    val totalCost: Double = 0.00,
+    val prodId: String? = "",
+    val cartId: String? = ""
 )

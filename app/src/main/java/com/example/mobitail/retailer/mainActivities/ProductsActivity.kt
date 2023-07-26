@@ -37,12 +37,10 @@ class ProductsActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.action_products
 
-
         productsAdapter = StoreProductsAdapter()
         onProductClick(productsAdapter)
         productListRV.adapter = productsAdapter
         productListRV.layoutManager = LinearLayoutManager(this)
-
 
         addProduct.setOnClickListener {
             val intent = Intent(this, AddRemoveProduct::class.java)
@@ -112,7 +110,6 @@ class ProductsActivity : AppCompatActivity() {
             }
         })
     }
-
 
     private fun onProductClick(adapter: StoreProductsAdapter) {
         adapter.setOnItemClickListener(object : StoreProductsAdapter.OnItemClickListener {

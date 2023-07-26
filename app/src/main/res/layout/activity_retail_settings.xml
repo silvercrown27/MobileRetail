@@ -35,7 +35,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                 <ListView
                     android:id="@+id/generalSettings"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="wrap_content"
                     tools:listitem="@layout/rv_listitem_type_1" />
 
             </LinearLayout>
@@ -101,10 +102,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Push all"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
@@ -134,10 +134,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="Messages"
-                        android:textSize="24sp" />
+                        android:layout_marginStart="47dp"
+                        android:textSize="22sp"
+                        android:text="Messages" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
@@ -150,7 +149,6 @@
                     android:layout_height="60dp"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="7dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginVertical="10dp"
                     android:layout_gravity="center"
@@ -167,10 +165,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Offers"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
@@ -215,10 +212,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Password and Security"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"
@@ -258,10 +254,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Privacy"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"
@@ -301,10 +296,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="47dp"
                         android:text="Subscriptions"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageView
                         android:layout_width="30dp"

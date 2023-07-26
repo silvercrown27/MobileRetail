@@ -1,21 +1,29 @@
 package com.example.mobitail.retailer.mainActivities
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
+import com.example.mobitail.FirebaseUtils
 import com.example.mobitail.R
+import com.example.mobitail.SQLDatabaseManager
+import com.example.mobitail.SigninActivity
 import com.example.mobitail.retailer.adapterClasses.SettingsAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class RetailSettingsActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var logout_btn: Button
     private lateinit var generalSettings: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_retail_settings)
 
+        logout_btn = findViewById(R.id.Logout_btn)
         generalSettings = findViewById(R.id.generalSettings)
 
         val itemList: ArrayList<SettingsAdapter.SettingsItem> = arrayListOf(
@@ -26,18 +34,6 @@ class RetailSettingsActivity : AppCompatActivity() {
 
         val adapter = SettingsAdapter(this, itemList)
         generalSettings.adapter = adapter
-
-
-
-
-
-
-
-
-
-
-
-
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.action_settings
@@ -74,5 +70,58 @@ class RetailSettingsActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        logout_btn.setOnClickListener {
+
+            FirebaseUtils.logoutUser()
+
+            val db = getDb()
+
+            val selectQuery = "SELECT * FROM users"
+            val cursor = db.rawQuery(selectQuery, null)
+
+            if (cursor.moveToFirst()) {
+                val firstNameColumnIndex = cursor.getColumnIndex("firstname")
+                val emailColumnIndex = cursor.getColumnIndex("email")
+
+                if (firstNameColumnIndex != -1 && emailColumnIndex != -1) {
+                    do {
+                        val firstName = cursor.getString(firstNameColumnIndex)
+                        val email = cursor.getString(emailColumnIndex)
+
+                        Toast.makeText(
+                            this@RetailSettingsActivity,
+                            "$firstName has been deleted!",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                        val deleteQuery = "DELETE FROM users WHERE email = '$email'"
+                        db.execSQL(deleteQuery)
+                    } while (cursor.moveToNext())
+                } else {
+                    Toast.makeText(
+                        this@RetailSettingsActivity,
+                        "Column not found in the database",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    this@RetailSettingsActivity,
+                    "No data found in the database",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            cursor.close()
+
+            val intent = Intent(this@RetailSettingsActivity, SigninActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+    private fun getDb(): SQLiteDatabase {
+        return SQLDatabaseManager.getDatabase(applicationContext)
+    }
+
 }

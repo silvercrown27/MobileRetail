@@ -43,7 +43,7 @@ class StoreProductsAdapter: RecyclerView.Adapter<StoreProductsAdapter.ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val productImage: ImageView = itemView.findViewById(R.id.prod_image)
         private val productSold: TextView = itemView.findViewById(R.id.products_sold)
-        private val productBrand: TextView = itemView.findViewById(R.id.prodBrand)
+        private val productName: TextView = itemView.findViewById(R.id.prodName)
         private val prodDateAdded: TextView = itemView.findViewById(R.id.dateAdded)
 
         fun bind(item: Products) {
@@ -53,7 +53,7 @@ class StoreProductsAdapter: RecyclerView.Adapter<StoreProductsAdapter.ViewHolder
                 .load(item.prodImage)
                 .into(productImage)
 
-            productBrand.text = item.prodBrand
+            productName.text = item.prodName
             productSold.text = item.sold.toString()
             prodDateAdded.text = item.dateAdded
 

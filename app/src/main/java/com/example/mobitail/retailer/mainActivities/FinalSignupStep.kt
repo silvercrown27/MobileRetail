@@ -29,6 +29,7 @@ class FinalSignupStep : AppCompatActivity() {
     private lateinit var selectedCategorieasAdapter: SelectedCatAdapter
     private lateinit var create_ac_btn: MaterialButton
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_final_signupstep)

@@ -26,8 +26,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class HomeItemsAdapter(private val context: Context)
-    : RecyclerView.Adapter<HomeItemsAdapter.ViewHolder>() {
+
+class FeaturedProductsAdapter (private val context: Context)
+    : RecyclerView.Adapter<FeaturedProductsAdapter.ViewHolder>() {
     private val groupList: ArrayList<Products> = ArrayList()
     private var itemClickListener: OnItemClickListener? = null
 

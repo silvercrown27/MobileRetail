@@ -61,6 +61,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
+                android:gravity="center_horizontal"
                 android:paddingHorizontal="10dp">
 
                 <com.google.android.material.card.MaterialCardView
@@ -104,7 +105,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
@@ -145,7 +146,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="190dp">
+                android:layout_height="265dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -183,10 +184,13 @@
                     </com.google.android.material.card.MaterialCardView>
 
                 </RelativeLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/featured_products"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="40dp" />
+                    android:layout_marginTop="30dp"
+                    tools:listitem="@layout/featured_products_rv_item"/>
 
             </RelativeLayout>
 
@@ -212,11 +216,13 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_items"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="2"
                         tools:listitem="@layout/home_screen_items" />
 
                 </RelativeLayout>
@@ -224,7 +230,7 @@
             </RelativeLayout>
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

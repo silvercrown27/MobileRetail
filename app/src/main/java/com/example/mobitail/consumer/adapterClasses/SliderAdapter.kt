@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.mobitail.R
 import com.example.mobitail.consumer.modalClasses.SliderData
@@ -34,12 +35,15 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.ViewHolder>() {
         return mSliderItems.size
     }
 
-
     inner class ViewHolder(itemView: View) : SliderViewAdapter.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.myimage)
+        private val imageView: ImageView = itemView.findViewById(R.id.myimage)
+        private val productName: TextView = itemView.findViewById(R.id.prod_name)
+        private val productDesc: TextView = itemView.findViewById(R.id.prod_description)
 
         fun bind(item: Products) {
             val context: Context = itemView.context
+            productDesc.text = item.prodDescription
+            productName.text = item.prodName
 
             Glide.with(context).load(item.prodImage).into(imageView)
         }

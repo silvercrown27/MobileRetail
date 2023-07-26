@@ -14,8 +14,12 @@ import com.example.mobitail.databaseorganization.Products
 
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -31,7 +35,6 @@ class AddRemoveProduct : AppCompatActivity() {
     private lateinit var imageUri: Uri
     private lateinit var storageRef: StorageReference
     private lateinit var dbRef: DatabaseReference
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,34 +87,37 @@ class AddRemoveProduct : AppCompatActivity() {
                     val downloadUrl = task.result.toString()
                     val prodId = dbRef.push().key
 
-                    val prods = Products(
-                        prodName = name,
-                        prodImage = downloadUrl,
-                        userid = currentUser,
-                        dateAdded = formattedDate
-                    )
                     if (downloadUrl != null && currentUser != null) {
                         if (prodId != null) {
-                            dbRef.child(prodId).setValue(prods)
-                                .addOnCompleteListener {
-                                    Toast.makeText(
-                                        this,
-                                        "Product Added Successfully!",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                            getStore(currentUser) { key ->
+                                val prods = Products(
+                                    prodName = name,
+                                    prodImage = downloadUrl,
+                                    storeId = key,
+                                    userid = currentUser,
+                                    dateAdded = formattedDate
+                                )
+                                dbRef.child(prodId).setValue(prods)
+                                    .addOnCompleteListener {
+                                        Toast.makeText(
+                                            this,
+                                            "Product Added Successfully!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
 
-                                    var intent = Intent(this, ProductsActivity::class.java)
-                                    startActivity(intent)
+                                        var intent = Intent(this, ProductsActivity::class.java)
+                                        startActivity(intent)
 
-                                    overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
+                                        overridePendingTransition(R.anim.fade_animation, R.anim.fade_out)
 
-                                }.addOnFailureListener { err ->
-                                    Toast.makeText(
-                                        this,
-                                        "Error ${err.message}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
+                                    }.addOnFailureListener { err ->
+                                        Toast.makeText(
+                                            this,
+                                            "Error ${err.message}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            }
                         }
                     }
 
@@ -134,5 +140,28 @@ class AddRemoveProduct : AppCompatActivity() {
 
     companion object {
         private const val PICK_IMAGE_REQUEST = 1
+    }
+
+    private fun getStore(userid: String, callback: (String?) -> Unit) {
+        val storedb = FirebaseDatabase.getInstance().getReference("stores")
+        val query: Query = storedb.orderByChild("userid").equalTo(userid)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val key = dataSnapshot.children.first().key
+                    callback(key)
+                } else {
+                    // Handle the case where no matching record was found
+                    println("No record found with id: $userid")
+                    callback(null)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("Error: ${databaseError.message}")
+                callback(null)
+            }
+        })
     }
 }
