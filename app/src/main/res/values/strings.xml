@@ -22,6 +22,9 @@ Price: $19.99</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="pesapal_consumer_key">YOUR_CONSUMER_KEY</string>
+    <string name="pesapal_consumer_secret">YOUR_CONSUMER_SECRET</string>
+
     <!--  Strings used for dropdown navigation -->
     <string-array name="options_array">
         <item>Option 1</item>

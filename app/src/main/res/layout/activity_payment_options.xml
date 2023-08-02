@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,62 +24,108 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:gravity="top">
 
-            <ImageView
-                android:id="@+id/back_btn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_arrow_back_ios_new_24" />
-
             <TextView
+                android:id="@+id/recipientname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Cards &amp; Options"
+                android:layout_gravity="center_horizontal"
+                android:text="Add Payment Option"
                 android:textSize="24dp"
                 android:textStyle="bold" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/Profile_picture"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/profile"
-                app:civ_border_color="@android:color/transparent"
-                app:civ_border_overlay="false"
-                app:civ_border_width="0dp" />
-
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:src="@drawable/notification" />
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="80dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/addCardPayment"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="20dp">
 
-            </com.google.android.material.card.MaterialCardView>
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="First Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editFirstName"
+                android:layout_marginTop="16dp"
+                android:hint="Last Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editLastName"
+                android:layout_marginTop="16dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/editPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editEmail"
+                android:layout_marginTop="16dp"
+                android:hint="Phone Number"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editPhoneNumber"
+                android:layout_marginTop="16dp"
+                android:hint="Amount"
+                android:inputType="numberDecimal" />
+
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:backgroundTint="@android:color/transparent"
+            app:cornerRadius="15dp"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartPayment"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:text="Proceed"
+            android:textColor="@color/white"
+            android:backgroundTint="@android:color/black"
+            app:cornerRadius="15dp"
+            app:strokeWidth="2dp" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

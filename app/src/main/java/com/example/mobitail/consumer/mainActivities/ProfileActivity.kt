@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 import com.example.mobitail.FirebaseUtils
+import com.example.mobitail.PaymentOptionsActivity
 import com.example.mobitail.consumer.adapterClasses.ProfileRecycleView
 import com.example.mobitail.consumer.modalClasses.ProfileItems
 import com.example.mobitail.R
@@ -139,7 +140,7 @@ class ProfileActivity : AppCompatActivity() {
         val item1 = ProfileItems(R.drawable.wallets,
             "Payment Options",
             "Choose and selct your desired payment option",
-            HomeActivity::class.java)
+            PaymentOptionsActivity::class.java)
 
         val item2 = ProfileItems(R.drawable.messages,
             "Message",

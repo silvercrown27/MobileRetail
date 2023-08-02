@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="110dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:backgroundTint="@color/monochrome_light"
+    app:strokeWidth="0dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,9 +14,10 @@
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="110dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/grey"
+            app:cardCornerRadius="0dp"
             app:strokeWidth="0dp">
 
             <ImageView
@@ -31,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="5dp"
-            android:paddingLeft="30dp">
+            android:paddingLeft="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,48 +45,73 @@
                     android:id="@+id/item_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Greens"
-                    android:textSize="23dp"
-                    android:textStyle="bold"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:paddingRight="5dp">
-
-                    <TextView
-                        android:id="@+id/currency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ksh."
-                        android:textSize="20dp"
-                        android:textColor="@color/grey"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/item_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2,788.00"
-                        android:textColor="@color/grey"
-                        android:textSize="17dp"
-                        android:textStyle="bold"/>
-
-                </LinearLayout>
+                    android:text=""
+                    android:textSize="16dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <RelativeLayout
-                        android:layout_width="100dp"
-                        android:layout_height="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Brand: "
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        android:textColor="@color/black"
+                        android:maxLines="1"
+                        android:ellipsize="end" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:id="@+id/currency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ksh."
+                            android:textSize="17dp"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:id="@+id/item_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentBottom="true"
+                        app:cardCornerRadius="0dp"
+                        app:strokeWidth="0dp"
+                        android:backgroundTint="@android:color/transparent">
 
                         <ImageButton
                             android:id="@+id/minus_btn"
                             android:layout_width="20dp"
                             android:layout_height="25dp"
-                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
                             android:scaleType="centerCrop"
                             android:src="@drawable/minus"
                             android:background="@android:color/transparent" />
@@ -92,8 +120,8 @@
                             android:id="@+id/prod_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
                             android:text="1"
                             android:textSize="23dp" />
 
@@ -101,37 +129,23 @@
                             android:id="@+id/plus_btn"
                             android:layout_width="20dp"
                             android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
                             android:scaleType="centerCrop"
                             android:src="@drawable/plus"
                             android:background="@android:color/transparent" />
-                    </RelativeLayout>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="15dp"
-                        android:backgroundTint="@color/grey"
-                        app:cardCornerRadius="45dp"
-                        app:strokeWidth="0dp" >
-
-                        <ImageView
-                            android:id="@+id/deleteItem"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="3dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/baseline_delete_outline_24"
-                            android:backgroundTint="@color/grey"/>
-
                     </com.google.android.material.card.MaterialCardView>
 
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="96dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:text="remove"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cornerRadius="0dp" />
                 </RelativeLayout>
             </LinearLayout>
-
         </RelativeLayout>
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
