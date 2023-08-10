@@ -8,6 +8,9 @@ android {
     namespace 'com.example.mobitail'
     compileSdk 33
 
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId "com.example.mobitail"
         minSdk 24
@@ -16,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "PSTK_PUBLIC_KEY", "${project.findProperty('PSTK_PUBLIC_KEY')}")
+        buildConfigField("String", "PSTK_PRIVATE_KEY", PSTK_PRIVATE_KEY)
     }
 
     buildTypes {
@@ -28,6 +33,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -72,8 +78,11 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.pesapal.android:pesapalandroid:1.0.8'
 
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
+
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-
+    implementation 'co.paystack.android:paystack:3.1.2'
 }

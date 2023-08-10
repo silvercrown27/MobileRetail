@@ -13,6 +13,7 @@ import com.example.mobitail.R
 import com.example.mobitail.consumer.adapterClasses.CartAdapter
 import com.example.mobitail.databaseorganization.CartItems
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,6 +26,7 @@ class CartActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var cartItems: RecyclerView
     private lateinit var cartItems_Adapter: CartAdapter
+    private lateinit var gotocheckout: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,19 @@ class CartActivity : AppCompatActivity() {
 
         cartItems = findViewById(R.id.cart_items)
         profileImg = findViewById(R.id.Profile_picture)
+        gotocheckout = findViewById(R.id.gotocheckout)
+
+        gotocheckout.setOnClickListener {
+            getCart(FirebaseAuth.getInstance().currentUser!!.uid) { cartId ->
+                if (cartId != null) {
+                    val intent = Intent(this, ActivityCheckout::class.java)
+                    intent.putExtra("cartid", cartId.toString())
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Error accessing cart", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         FirebaseUtils.prepareData(this) { user ->
             if (user != null) {
@@ -44,7 +59,7 @@ class CartActivity : AppCompatActivity() {
                 Toast.makeText(this, "User data is not available", Toast.LENGTH_SHORT).show()
             }
         }
-        cartItems_Adapter = CartAdapter()
+        cartItems_Adapter = CartAdapter(this@CartActivity)
         cartItems.adapter = cartItems_Adapter
         cartItems.layoutManager = LinearLayoutManager(this)
 
@@ -127,7 +142,7 @@ class CartActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                showToast("An error occured while accessing the database")
+                showToast("An error occurred while accessing the database")
             }
         })
     }
@@ -144,6 +159,11 @@ class CartActivity : AppCompatActivity() {
                             cartIdCallback(cartid)
                             return
                         }
+                        else {
+                            cartIdCallback(null)
+                            return
+                        }
+
                     }
                     showToast("Your Cart is empty")
                     cartIdCallback(null)

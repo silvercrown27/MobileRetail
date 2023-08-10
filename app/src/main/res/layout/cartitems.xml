@@ -6,6 +6,7 @@
     android:layout_marginHorizontal="10dp"
     android:layout_marginTop="10dp"
     android:backgroundTint="@color/monochrome_light"
+    app:cardCornerRadius="20dp"
     app:strokeWidth="0dp" >
 
     <LinearLayout
@@ -136,6 +137,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/deleteItem"
                         android:layout_width="96dp"
                         android:layout_height="40dp"
                         android:layout_alignParentBottom="true"

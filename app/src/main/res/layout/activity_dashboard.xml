@@ -4,55 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/monochrome_light"
     tools:context=".retailer.mainActivities.RetailDashboardActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:gravity="top">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:gravity="top">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Dashboard"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Dashboard"
-                android:textSize="24dp"
-                android:textStyle="bold" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Profile_picture"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/profile"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_overlay="false"
+            app:civ_border_width="0dp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/Profile_picture"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/profile"
-                app:civ_border_color="@android:color/transparent"
-                app:civ_border_overlay="false"
-                app:civ_border_width="0dp" />
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/notification" />
 
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:src="@drawable/notifiation" />
-
-        </com.google.android.material.appbar.MaterialToolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -101,7 +92,7 @@
                         android:layout_width="160dp"
                         android:layout_height="75dp"
                         android:layout_marginRight="7dp"
-                        android:backgroundTint="@color/light"
+                        android:backgroundTint="@color/white"
                         android:paddingTop="8dp"
                         app:cardCornerRadius="15dp"
                         app:strokeWidth="0dp">
@@ -157,69 +148,7 @@
                         android:layout_height="75dp"
                         android:layout_gravity="right"
                         android:layout_marginLeft="7dp"
-                        android:backgroundTint="@color/light"
-                        android:paddingTop="8dp"
-                        app:cardCornerRadius="15dp"
-                        app:strokeWidth="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:padding="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/cards" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="6dp"
-                                    android:text="My Banks"
-                                    android:textSize="20dp"
-                                    android:textStyle="bold"/>
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginLeft="9dp"
-                                android:text="Payment Options"
-                                android:textSize="13dp" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@android:color/transparent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/next"/>
-
-
-                        </RelativeLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="120dp"
-                    android:gravity="center_horizontal">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="160dp"
-                        android:layout_height="75dp"
-                        android:layout_marginRight="7dp"
-                        android:backgroundTint="@color/light"
+                        android:backgroundTint="@color/white"
                         android:paddingTop="8dp"
                         app:cardCornerRadius="15dp"
                         app:strokeWidth="0dp">
@@ -266,68 +195,7 @@
                                 android:background="@android:color/transparent"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/next" />
-
-
                         </RelativeLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="160dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="7dp"
-                        android:backgroundTint="@color/light"
-                        android:paddingTop="8dp"
-                        app:cardCornerRadius="15dp"
-                        app:strokeWidth="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:padding="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="25dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/send"
-                                    app:srcCompat="@drawable/stats" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="6dp"
-                                    android:text="Statistics"
-                                    android:textSize="20dp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginLeft="9dp"
-                                android:text="Store Statistics"
-                                android:textSize="13dp" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:background="@android:color/transparent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/next"/>
-
-
-                        </RelativeLayout>
-
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </RelativeLayout>
@@ -554,7 +422,7 @@
                     android:layout_height="170dp"
                     android:layout_marginVertical="5dp"
                     android:layout_marginRight="7dp"
-                    android:backgroundTint="@color/monochrome_lightRed"
+                    android:backgroundTint="@color/white"
                     app:cardCornerRadius="18dp">
 
                     <LinearLayout
@@ -633,7 +501,7 @@
                     android:layout_height="170dp"
                     android:layout_marginVertical="5dp"
                     android:layout_marginLeft="7dp"
-                    android:backgroundTint="@color/monochrome_lightRed"
+                    android:backgroundTint="@color/white"
                     app:cardCornerRadius="18dp">
 
                     <LinearLayout
@@ -644,7 +512,6 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/option_image"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center_horizontal"
@@ -654,7 +521,6 @@
                             app:srcCompat="@drawable/chat" />
 
                         <TextView
-                            android:id="@+id/option_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -712,7 +578,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="250dp" >
+                    android:layout_height="wrap_content">
                     
                     <TextView
                         android:layout_width="wrap_content"
@@ -742,7 +608,7 @@
         android:verticalScrollbarPosition="defaultPosition"
         android:elevation="15dp"
         android:layout_alignParentBottom="true"
-        android:background="?attr/colorPrimary"
+        android:background="@color/white"
         app:elevation="8dp"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"

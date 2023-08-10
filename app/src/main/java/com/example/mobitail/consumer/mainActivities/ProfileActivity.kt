@@ -43,25 +43,20 @@ class ProfileActivity : AppCompatActivity() {
         profile_rv = findViewById(R.id.profile_RV)
         settings_btn = findViewById(R.id.Setting_btn)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
-        user_firstname = findViewById(R.id.user_firstname)
         user_name = findViewById(R.id.user_name)
         user_email = findViewById(R.id.user_email)
         user_location = findViewById(R.id.user_location)
-        user_gender = findViewById(R.id.User_gender)
 
         FirebaseUtils.prepareData(this@ProfileActivity) { user ->
             if (user != null) {
                 val email = user.email
                 val name = user.firstname + " " + user.lastname
                 val location = user.location
-                val gender = user.gender
                 val profileImg = user.profileimage
 
                 user_name.text = name
                 user_email.text = email
                 user_location.text = location
-                user_gender.text = gender
-                user_firstname.text = user.firstname
 
                 Glide.with(this@ProfileActivity)
                     .load(profileImg)

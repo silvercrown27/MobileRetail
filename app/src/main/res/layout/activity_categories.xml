@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/monochrome_light"
     tools:context=".consumer.mainActivities.CategoriesActivity">
 
     <LinearLayout
@@ -30,14 +30,16 @@
                     <com.google.android.material.appbar.MaterialToolbar
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:background="@android:color/transparent"
+                        android:background="@color/white"
                         android:gravity="top">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
                             android:text="Categories"
                             android:textSize="24dp"
+                            android:textColor="@color/black"
                             android:textStyle="bold" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -105,17 +107,20 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
+                    android:gravity="center_horizontal"
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="292dp"
-                        android:layout_height="46dp"
+                        android:layout_width="290dp"
+                        android:layout_height="41dp"
+                        android:layout_marginRight="8dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/black"
-                        android:backgroundTint="@color/monochrome_light">
+                        app:cardCornerRadius="25dp"
+                        android:backgroundTint="@color/white">
 
                         <androidx.appcompat.widget.SearchView
                             android:layout_width="match_parent"
@@ -128,12 +133,13 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
+                        android:layout_width="41dp"
+                        android:layout_height="41dp"
                         android:layout_alignParentRight="true"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/black"
-                        android:backgroundTint="@color/monochrome_light">
+                        app:cardCornerRadius="15dp"
+                        android:backgroundTint="@color/white">
 
                         <ImageButton
                             android:layout_width="25dp"
@@ -144,7 +150,7 @@
                             android:background="@android:color/transparent" />
 
                     </com.google.android.material.card.MaterialCardView>
-                </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 

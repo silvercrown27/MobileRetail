@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/monochrome_light"
     tools:context=".consumer.mainActivities.ProfileActivity">
 
     <ScrollView
         android:id="@+id/Profile_recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="70dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -21,13 +21,24 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="380dp">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:layout_width="match_parent"
                     android:layout_height="235dp"
                     android:gravity="top"
-                    android:background="@color/colorPrimary" >
+                    android:background="@drawable/profilebackground" >
+
+                    <ImageButton
+                        android:id="@+id/Setting_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/settings"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/transparent" />
 
                     <ImageButton
                         android:layout_width="30dp"
@@ -37,16 +48,6 @@
                         android:background="@android:color/transparent"
                         android:scaleType="centerInside"
                         android:src="@drawable/notification" />
-
-                    <ImageButton
-                        android:id="@+id/Setting_btn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:src="@drawable/settings"
-                        android:scaleType="centerCrop"
-                        android:background="@android:color/transparent" />
-
                 </com.google.android.material.appbar.MaterialToolbar>
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -61,92 +62,13 @@
                     app:civ_border_overlay="false"
                     app:civ_border_width="0dp" />
 
-                <RelativeLayout
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true">
-
-                    <TextView
-                        android:id="@+id/user_firstname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="John Doe"
-                        android:textSize="25dp"
-                        android:textStyle="bold"/>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="6dp">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignParentBottom="true">
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginRight="3dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/mentionred"/>
-
-                    <TextView
-                        android:id="@+id/user_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16dp"/>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginHorizontal="10dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="141dp"
-                    android:layout_marginLeft="8dp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:strokeWidth="0dp"
-                            android:backgroundTint="@android:color/transparent">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/edit"
-                                android:scaleType="centerCrop"
-                                android:background="@android:color/transparent"/>
-
-                            <TextView
-                                android:id="@+id/edit_profile_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="30dp"
-                                android:text="Edit Profile"
-                                android:textStyle="normal"
-                                android:textSize="20dp" />
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                    </RelativeLayout>
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
 
                     <TextView
                         android:id="@+id/user_name"
@@ -156,6 +78,20 @@
                         android:textSize="23dp"
                         android:textStyle="bold"
                         android:layout_marginTop="7dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Joined in: 3-Aug-2023"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/user_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        />
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
@@ -184,22 +120,43 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:id="@+id/User_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Male"
-                        android:textSize="20dp" />
+                        android:layout_marginTop="10dp"
+                        android:text="Identity Verified"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
+            </RelativeLayout>
 
-            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="10dp" >
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="100dp"
+                    android:layout_height="34dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="0dp"
+                    android:backgroundTint="@color/white"
+                    android:text="Edit Profile"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/black"
+                    app:cornerRadius="30dp"/>
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/profile_RV"
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_gravity="center_horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/profilegridview"
@@ -210,27 +167,20 @@
 
     </ScrollView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
 
-    <RelativeLayout
+    android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_alignParentBottom="true" >
+        android:focusable="false"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:background="@drawable/bottom_nav_card_background"
+        android:elevation="15dp"
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:focusable="false"
-            android:verticalScrollbarPosition="defaultPosition"
-            android:background="@drawable/bottom_nav_card_background"
-            android:elevation="15dp"
-            android:layout_alignParentBottom="true"
-            app:itemIconTint="@color/black"
-            app:itemTextColor="@color/black"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_navigation_menu">
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    </RelativeLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>

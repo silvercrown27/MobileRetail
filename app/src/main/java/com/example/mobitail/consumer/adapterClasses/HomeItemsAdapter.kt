@@ -16,6 +16,7 @@ import com.example.mobitail.R
 import com.example.mobitail.databaseorganization.Cart
 import com.example.mobitail.databaseorganization.CartItems
 import com.example.mobitail.databaseorganization.Products
+import com.example.mobitail.databaseorganization.Secrets
 
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +24,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 
 
 class HomeItemsAdapter(private val context: Context)
@@ -81,7 +84,7 @@ class HomeItemsAdapter(private val context: Context)
             itemlabel.text = item.prodName
             Glide.with(context)
                 .load(item.prodImage)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imageView)
 
             addToCart.setOnClickListener {
@@ -154,10 +157,13 @@ class HomeItemsAdapter(private val context: Context)
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (prodSnap in snapshot.children)
                     {
-                        val productId = prodSnap.key
-                        prodidCallback(productId)
+                        val data = prodSnap.getValue(Products::class.java)
+                        if (data!!.prodName == prod.prodName && data!!.prodBrand == prod.prodBrand){
+                            val productId = prodSnap.key
+                            prodidCallback(productId)
 
-                        return
+                            return
+                        }
                     }
                 }
 
@@ -168,28 +174,61 @@ class HomeItemsAdapter(private val context: Context)
             })
     }
 
-    private fun createCartItem(item: Products, cartId: String?, prodId: String?){
-        val cartitemdb: DatabaseReference = FirebaseDatabase.getInstance()
-            .getReference("cartitems")
+
+    private fun createCartItem(item: Products, cartId: String?, prodId: String?) {
+        val cartitemdb: DatabaseReference = FirebaseDatabase.getInstance().getReference("cartitems")
         val CartItemId = cartitemdb.push().key
 
-        val cartitem = CartItems(
-            prodName = item.prodName,
-            prodPrice = item.prodPrice!!.toDouble(),
-            prodImg = item.prodImage,
-            totalCost = item.prodPrice,
-            cartId = cartId,
-            prodId = prodId
-        )
+        var itemFound = false
 
-        if (CartItemId != null) {
-            cartitemdb.child(CartItemId).setValue(cartitem)
-                .addOnCompleteListener {
-                    showToast("${cartitem.prodName} added to cart")
+        cartitemdb.orderByChild("cartId").equalTo(cartId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (snapshot in dataSnapshot.children) {
+                    val itemdata = snapshot.getValue(CartItems::class.java)
+                    if (itemdata?.prodId == prodId) {
+                        val quantityUpdateMap = mapOf(
+                            "quantity" to ServerValue.increment(1)
+                        )
 
-                }.addOnFailureListener { err ->
-                    err.message?.let { showToast(it) }
+                        snapshot.ref.updateChildren(quantityUpdateMap)
+                            .addOnCompleteListener {
+                                showToast("${itemdata?.prodName} quantity updated in cart")
+                            }
+                            .addOnFailureListener { err ->
+                                err.message?.let { showToast(it) }
+                            }
+
+                        itemFound = true
+                        break
+                    }
                 }
-        }
+
+                if (!itemFound) {
+                    val cartitem = CartItems(
+                        prodName = item.prodName,
+                        prodPrice = item.prodPrice!!.toDouble(),
+                        prodImg = item.prodImage,
+                        totalCost = item.prodPrice,
+                        cartId = cartId,
+                        prodId = prodId,
+                        quantity = 1
+                    )
+
+                    if (CartItemId != null) {
+                        cartitemdb.child(CartItemId).setValue(cartitem)
+                            .addOnCompleteListener {
+                                showToast("${cartitem.prodName} added to cart")
+                            }
+                            .addOnFailureListener { err ->
+                                err.message?.let { showToast(it) }
+                            }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle onCancelled event
+            }
+        })
     }
 }

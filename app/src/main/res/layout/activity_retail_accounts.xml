@@ -4,42 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/monochrome_light"
     tools:context=".retailer.mainActivities.RetailAccountsActivity">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:elevation="10dp"
-        android:background="@color/light">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
-            android:text="Account"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/notification" />
-
-    </com.google.android.material.appbar.MaterialToolbar>
 
     <ScrollView
         android:id="@+id/Profile_recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
         android:layout_centerVertical="true"
-        android:padding="5dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -47,125 +19,140 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="horizontal">
+                android:layout_height="340dp">
 
-                <RelativeLayout
-                    android:layout_width="141dp"
-                    android:layout_height="141dp"
-                    android:gravity="center_vertical">
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="235dp"
+                    android:gravity="top"
+                    android:background="@drawable/profilebackground" >
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Profile_picture"
-                        android:layout_width="141dp"
-                        android:layout_height="141dp"
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/profile"
-                        app:civ_border_color="@android:color/transparent"
-                        app:civ_border_overlay="false"
-                        app:civ_border_width="0dp" />
+                        android:scaleType="centerInside"
+                        android:src="@drawable/notification" />
 
-                </RelativeLayout>
+                </com.google.android.material.appbar.MaterialToolbar>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/Profile_picture"
+                    android:layout_width="135dp"
+                    android:layout_height="135dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="155dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/profile"
+                    android:background="@android:color/transparent"
+                    app:civ_border_color="@android:color/transparent"
+                    app:civ_border_overlay="false"
+                    app:civ_border_width="0dp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="141dp"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:strokeWidth="0dp"
-                            android:backgroundTint="@android:color/transparent">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/cart"
-                                android:scaleType="centerCrop"
-                                android:background="@android:color/transparent"/>
-
-                            <TextView
-                                android:id="@+id/edit_profile_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="30dp"
-                                android:text="Edit Profile"
-                                android:textStyle="normal"
-                                android:textSize="20dp" />
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                    </RelativeLayout>
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
 
                     <TextView
-                        android:id="@+id/User_name"
+                        android:id="@+id/user_firstname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="John Doe"
-                        android:textSize="23dp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="7dp" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        app:strokeWidth="0dp"
-                        android:backgroundTint="@android:color/transparent">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/location"
-                            android:scaleType="centerCrop"
-                            android:background="@android:color/transparent"/>
-
-                        <TextView
-                            android:id="@+id/location"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
-                            android:text="Nairobi, Kenya"
-                            android:textStyle="normal"
-                            android:textSize="20dp" />
-
-                    </com.google.android.material.card.MaterialCardView>
+                        android:textSize="28dp"
+                        android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/User_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Male"
-                        android:textSize="20dp" />
+                        android:layout_marginLeft="20dp"
+                        android:text="Joined in: 3-Aug-2023"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Identity Verified"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="10dp" >
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/reteilAccountRV"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    tools:listitem="@layout/rv_listitem_type_1"/>
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="18dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="As an enthusiastic and driven individual, I have embarked on a remarkable journey as a store owner and entrepreneur. My passion for curating unique and quality products has fueled my desire to create a shopping experience that goes beyond transactions—it's about creating memories and connecting people with products they love."
+                        android:textSize="16dp"
+                        android:textColor="@color/black"
+                        android:ellipsize="end"
+                        android:maxLines="3" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="100dp"
+                    android:layout_height="34dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="0dp"
+                    android:backgroundTint="@color/white"
+                    android:text="Edit Profile"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/black"
+                    app:cornerRadius="30dp"/>
             </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:text="Orders"
+                android:textSize="18dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/OrdersRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:itemCount="2"
+                app:spanCount="2"/>
+
         </LinearLayout>
+
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

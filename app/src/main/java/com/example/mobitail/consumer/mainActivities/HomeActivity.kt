@@ -37,7 +37,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var profileImg: CircleImageView
     private lateinit var groupsRV: RecyclerView
     private lateinit var slider: SliderView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -205,10 +204,10 @@ class HomeActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 groupList.clear()
 
-                var count = 0 // Counter to keep track of the number of items added
+                var count = 0
                 for (productSnapshot in snapshot.children) {
                     if (count >= 5) {
-                        break // Exit the loop once 5 items are added
+                        break
                     }
 
                     val product = productSnapshot.getValue(Products::class.java)
